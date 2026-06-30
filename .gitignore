@@ -1,0 +1,6 @@
+# Linux system files
+.directory
+.Trash-*
+
+# Security
+.env
