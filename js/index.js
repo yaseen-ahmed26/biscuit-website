@@ -1,6 +1,6 @@
 let activeCard = "login";
 
-const signUpBtn = document.getElementById("signup-btn");
+const actionBtn = document.getElementById("action-btn");
 const loginBtn = document.getElementById("login-btn")
 const registerBtn = document.getElementById("register-btn")
 
@@ -50,7 +50,7 @@ function loginUser(event){
     console.log("GET request")
 };
 
-signUpBtn.addEventListener("click", () => {
+actionBtn.addEventListener("click", () => {
     if(activeCard == "login"){
         activeCard = "register"
         loginCard.style.display = "none";
@@ -61,7 +61,7 @@ signUpBtn.addEventListener("click", () => {
         registerCard.style.display = "none";
     };
 
-    signUpBtn.textContent = activeCard == "login" ? "Register" : "Login"
+    actionBtn.textContent = activeCard == "login" ? "Register" : "Login"
 });
 
 loginBtn.addEventListener("click", loginUser)

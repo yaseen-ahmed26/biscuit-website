@@ -4,7 +4,6 @@ This is some personal notes based off the project.
 
 ### TO DO:
 - Game dashboard. This will be a seperate HTML page.
-- User account details card. Could also be a seperate page? Only the core content will change so maybe it's not needed. Seperation of concerns may be better though.
 - Better cover image
 
 ---
