@@ -112,7 +112,7 @@ async function loginUser(event){
     };
 };
 
-actionBtn.addEventListener("click", () => {
+function changeCurrentMode(){
     if(activeCard == "login"){
         activeCard = "register"
         loginCard.style.display = "none";
@@ -124,7 +124,8 @@ actionBtn.addEventListener("click", () => {
     };
 
     actionBtn.textContent = activeCard == "login" ? "Register" : "Login"
-});
+}
 
+actionBtn.addEventListener("click", changeCurrentMode);
 loginBtn.addEventListener("click", loginUser)
 registerBtn.addEventListener("click", createUser)
