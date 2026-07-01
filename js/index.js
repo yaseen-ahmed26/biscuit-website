@@ -7,8 +7,8 @@ const registerBtn = document.getElementById("register-btn")
 const loginCard = document.getElementById("login-card");
 const registerCard = document.getElementById("register-card");
 
-const loginEmailField = document.getElementById("login-email").value
-const loginPasswordField = document.getElementById("login-password").value
+const loginEmailField = document.getElementById("login-email")
+const loginPasswordField = document.getElementById("login-password")
 
 const registerEmailField = document.getElementById("register-email")
 const registerUsernameField = document.getElementById("register-username")
@@ -16,8 +16,42 @@ const registerPasswordField = document.getElementById("register-password")
 
 const url = "http://127.0.0.1:8000/api/users"
 
+async function getCurrentUser(token) {
+    try{
+        const response = await fetch(url + "/me", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if(!response.ok){
+            alert("Failed to fetch user data");
+            return;
+        }
+
+        const userData = await response.json();
+
+        localStorage.setItem("user_data", JSON.stringify(userData));
+
+        window.location.replace("pages/account.html");
+    
+    }catch (error){
+        alert(`An error occurred: ${error.message}`);
+    };
+};
+
 async function createUser(event){
     event.preventDefault();
+
+    if(
+        registerEmailField.value == "" ||
+        registerUsernameField.value == "" ||
+        registerPasswordField.value == ""
+    ){
+        alert("Missing fields")
+        return;
+    }
 
     const userData = {
         email: registerEmailField.value,
@@ -35,19 +69,47 @@ async function createUser(event){
         const data = await response.json();
 
         if(!response.ok){
-            alert(`An error occurred ${response.status}`, data)
+            alert(`An error occurred ${response.status} ${data.detail}`)
+            return;
         }
 
         alert('Success:', data);
-
-    }catch(error){
-        alert(`An error occurred: ${error}`)
+    }catch (error){
+        alert(`An error occurred: ${error.message}`)
     }
 };
 
-function loginUser(event){
+async function loginUser(event){
     event.preventDefault();
-    console.log("GET request")
+    
+    const formData = new URLSearchParams();
+
+    formData.append("username", loginEmailField.value);
+    formData.append("password", loginPasswordField.value);
+
+    try{
+        const response = await fetch(url + "/token", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (!response.ok){
+            alert(`An error occurred ${response.status} ${data.detail}`)
+            return;
+        }
+
+        localStorage.setItem("access_token", data.access_token);
+        alert("Login successful");
+
+        await getCurrentUser(data.access_token);
+    }catch (error) {
+        alert(`An error occurred: ${error.message}`);
+    };
 };
 
 actionBtn.addEventListener("click", () => {
