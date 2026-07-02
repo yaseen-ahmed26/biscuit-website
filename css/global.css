@@ -110,6 +110,17 @@ header{
     text-align: center;
 }
 
+.card-2 h2{
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.card-1 p{
+    margin-top: 1rem;
+    text-align: center;
+}
+
 .input-box{
     position: relative;
     width: 100%;
