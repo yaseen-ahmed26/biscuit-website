@@ -3,9 +3,11 @@
 This is some personal notes based off the project.
 
 ---
-### TO DO:
+### FUTURE IDEAS:
 - Game dashboard. This will be a seperate HTML page.
 - Better cover image
+- When creating an account, it showed auto-log you in. This probably has to be done by seperating the login and register logic and pages.
+- Changing password field in the account details.
 
 ---
 ### TOOLS
@@ -29,10 +31,14 @@ Previously, I was trying to update thw account page with data from index.html. B
 4. Changing Pages
 Was trying to change the window after setting that window up, which reset the page back to default and JavaScript had to run again. Because it reset, this time it did not have the user data so it threw an error.
 
+5. Remember to parse localstorage items
+Got a 422 error when updating the user information because I forgot to parse userData inside localstorage. So user_id was undefined.
+
 ---
 ### DESIGN NOTES
 - Could probably have a "Already have an account?" message on the register card. Though there is the login button on the top so maybe it's not needed.
 - Default card would be register. User can click the top right button to log in. Once logged in, that button can change to logout and the card will change to user details or a new page. 
+- Need to figure out how to store the user's password unhashed password locally. Otherwise could have a verify_password endpoint for users to input before going to the account details page then we can just update it.
 
 ---
 ### EXTRA NOTES
