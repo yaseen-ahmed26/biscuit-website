@@ -39,6 +39,7 @@ Got a 422 error when updating the user information because I forgot to parse use
 - Could probably have a "Already have an account?" message on the register card. Though there is the login button on the top so maybe it's not needed.
 - Default card would be register. User can click the top right button to log in. Once logged in, that button can change to logout and the card will change to user details or a new page. 
 - Need to figure out how to store the user's password unhashed password locally. Otherwise could have a verify_password endpoint for users to input before going to the account details page then we can just update it.
+- 1 global CSS file is probably better than 1 global and then 1 additonal file for each page. Since each page looks more or less the same.
 
 ---
 ### EXTRA NOTES
