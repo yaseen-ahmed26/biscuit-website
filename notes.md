@@ -44,6 +44,7 @@ Got a 422 error when updating the user information because I forgot to parse use
 ---
 ### EXTRA NOTES
 - I did way too much in a single commit, commit 4 I think. Did account page, login functionalies, token storage, logut etc. Should've been split into 3 commits. 
+- Should probably not include const url = "..." in each file. Production would use a .env file like Python. Since the URL is local, it's fine, but usually would hide it if it's deployed.
 
 ### ABBREVIATIONS
 HTML: Hyper Text Markup Language
