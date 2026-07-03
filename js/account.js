@@ -35,13 +35,13 @@ function logOutUser(){
 async function updateUserData(){
     const currentPassword = updatePasswordField.value
     const userData = {
-        email: updateEmailField.value,
         username: updateUsernameField.value,
-        currentPassword
+        email: updateEmailField.value,
+        current_password: currentPassword
     };
 
-    if(userData.email == "") delete userData.email
-    if(userData.username == "") delete userData.username
+    if(updateEmailField.email == "") delete userData.email
+    if(updateUsernameField.username == "") delete userData.username
 
     const saveData = JSON.parse(localStorage.getItem("user_data"));
     const token = localStorage.getItem("access_token");
