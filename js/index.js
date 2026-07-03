@@ -66,12 +66,22 @@ async function createUser(event){
             body: JSON.stringify(userData)
         })
 
-        const data = await response.json();
+        let data = {}
+
+        try{
+            data = await response.json();
+        } catch(error){
+            console.log(error)
+        }
 
         if(!response.ok){
-            alert(`An error occurred ${response.status} ${data.detail}`)
+            const errorMessage = Array.isArray(data.detail)
+                ? data.detail?.[0]?.msg
+                : data.message || data.detail || "Unknown error";
+
+            alert(`An error occurred: (${response.status}) ${errorMessage}`);
             return;
-        }
+        };
 
         alert('Success:', data);
     }catch (error){
@@ -96,12 +106,22 @@ async function loginUser(event){
             body: formData
         });
 
-        const data = await response.json();
+        let data = {};
 
-        if (!response.ok){
-            alert(`An error occurred ${response.status} ${data.detail}`)
+        try{
+            data = await response.json();
+        } catch(error){
+            console.log(error);
+        };
+
+       if(!response.ok){
+            const errorMessage = Array.isArray(data.detail)
+                ? data.detail?.[0]?.msg
+                : data.message || data.detail || "Unknown error";
+
+            alert(`An error occurred: (${response.status}) ${errorMessage}`);
             return;
-        }
+        };
 
         localStorage.setItem("access_token", data.access_token);
         alert("Login successful");

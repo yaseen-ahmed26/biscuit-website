@@ -32,14 +32,24 @@ async function submitCode(){
             body: JSON.stringify(postData)
         })
 
-        const data = await response.json();
+        let data = {};
+
+        try{
+            data = await response.json();
+        } catch(error){
+            console.log(error);
+        };
 
         if(!response.ok){
-            alert(`An error occurred ${response.status} ${data.detail}`)
-            return;
-        }
+            const errorMessage = Array.isArray(data.detail)
+                ? data.detail?.[0]?.msg
+                : data.message || data.detail || "Unknown error";
 
-        alert('Success:', data.message);
+            alert(`An error occurred: (${response.status}) ${errorMessage}`);
+            return;
+        };
+
+        alert('Success! Successfully logged in the game');
     }catch (error){
         alert(`An error occurred: ${error.message}`)
     }

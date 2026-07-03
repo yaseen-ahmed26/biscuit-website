@@ -34,11 +34,6 @@ function logOutUser(){
 
 async function updateUserData(){
     const currentPassword = updatePasswordField.value
-    if(currentPassword == ""){
-        alert("Enter your password to update your details");
-        return;
-    }
-
     const userData = {
         email: updateEmailField.value,
         username: updateUsernameField.value,
@@ -62,14 +57,24 @@ async function updateUserData(){
             body: JSON.stringify(userData)
         });
 
-        const data = await response.json();
+        let data = {}
+
+        try{
+            data = await response.json();
+        } catch(error){
+            console.log(error);
+        };
 
         if(!response.ok){
-            alert(`An error occurred ${response.status} ${data.detail}`)
+            const errorMessage = Array.isArray(data.detail)
+                ? data.detail?.[0]?.msg
+                : data.message || data.detail || "Unknown error";
+
+            alert(`An error occurred: (${response.status}) ${errorMessage}`);
             return;
         };
 
-        alert('Success:', data);
+        alert('Success');
 
         localStorage.setItem("user_data", JSON.stringify(data));
         
