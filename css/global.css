@@ -62,8 +62,8 @@ header{
 
 .wrapper{
     position: relative;
-    width: 420px;
-    height: 480px; 
+    width: 480px;
+    height: 540px; 
     background: transparent;
     border: 2px solid hsla(0, 0%, 100%, 0.765);
     border-radius: 20px;
@@ -102,6 +102,8 @@ header{
 
 .wrapper .card-2{
     display: none;
+    width: 100%;
+    padding: 40px;
 }
 
 .card-1 h2{

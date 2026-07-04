@@ -34,6 +34,9 @@ Was trying to change the window after setting that window up, which reset the pa
 5. Remember to parse localstorage items
 Got a 422 error when updating the user information because I forgot to parse userData inside localstorage. So user_id was undefined.
 
+6. UserUpdate payload
+This payload didn't match the Pydantic schema at all. First of all, I never set current_password = currentPassword. So Pydantic saw it as currentPassword = value whereas the schemas use snake_case and so filtered it out. Secondly, the order was wrong. Username should've came first then email, Pydantic mistook email as being the username which messed everything up.
+
 ---
 ### DESIGN NOTES
 - Could probably have a "Already have an account?" message on the register card. Though there is the login button on the top so maybe it's not needed.
