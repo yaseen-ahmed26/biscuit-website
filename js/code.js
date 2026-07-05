@@ -12,13 +12,8 @@ function logOutUser(){
 }
 
 async function submitCode(){
-    if(inputCodeField.value.length !== 7){
-        alert("Code must be exactly 7 characters");
-        return;
-    };
-
     const postData = {
-        code: inputCodeField.value
+        login_code: inputCodeField.value
     }
     const token = localStorage.getItem("access_token")
 
@@ -49,7 +44,7 @@ async function submitCode(){
             return;
         };
 
-        alert('Success! Successfully logged in the game');
+        alert(`Successfully logged in on your ${data.os} in ${data.country}`);
     }catch (error){
         alert(`An error occurred: ${error.message}`)
     }
