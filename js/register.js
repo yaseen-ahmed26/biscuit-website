@@ -1,9 +1,10 @@
 const actionBtn = document.getElementById("action-btn");
 const registerBtn = document.getElementById("register-btn")
 
-const registerEmailField = document.getElementById("register-email")
-const registerUsernameField = document.getElementById("register-username")
-const registerPasswordField = document.getElementById("register-password")
+const emailField = document.getElementById("email")
+const usernameField = document.getElementById("username")
+const passwordField = document.getElementById("password")
+const confirmPasswordField = document.getElementById("confirm-password")
 
 const url = "http://127.0.0.1:8000/api/users"
 
@@ -11,18 +12,23 @@ async function createUser(event){
     event.preventDefault();
 
     if(
-        registerEmailField.value == "" ||
-        registerUsernameField.value == "" ||
-        registerPasswordField.value == ""
+        emailField.value == "" ||
+        usernameField.value == "" ||
+        passwordField.value == ""
     ){
         alert("Missing fields")
         return;
     }
 
+    if(passwordField.value !== confirmPasswordField.value){
+        alert("Passwords do not match")
+        return;
+    }
+
     const userData = {
-        email: registerEmailField.value,
-        username: registerUsernameField.value,
-        password: registerPasswordField.value
+        email: emailField.value,
+        username: usernameField.value,
+        password: passwordField.value
     };
 
     try{
