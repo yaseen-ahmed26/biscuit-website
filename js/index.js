@@ -1,4 +1,4 @@
-let activeCard = "login";
+import { loginEndpoint } from "./helpers/api.js";
 
 const actionBtn = document.getElementById("action-btn");
 const loginBtn = document.getElementById("login-btn")
@@ -35,44 +35,16 @@ async function getCurrentUser(token) {
 
 async function loginUser(event){
     event.preventDefault();
-    
-    const formData = new URLSearchParams();
-
-    formData.append("username", loginEmailField.value);
-    formData.append("password", loginPasswordField.value);
 
     try{
-        const response = await fetch(url + "/token", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: formData
-        });
-
-        let data = {};
-
-        try{
-            data = await response.json();
-        } catch(error){
-            console.log(error);
-        };
-
-       if(!response.ok){
-            const errorMessage = Array.isArray(data.detail)
-                ? data.detail?.[0]?.msg
-                : data.message || data.detail || "Unknown error";
-
-            alert(`An error occurred: (${response.status}) ${errorMessage}`);
-            return;
-        };
+        const data = await loginEndpoint(loginEmailField.value, loginPasswordField.value)
 
         localStorage.setItem("access_token", data.access_token);
         alert("Login successful");
 
         await getCurrentUser(data.access_token);
     }catch (error) {
-        alert(`An error occurred: ${error.message}`);
+        alert(`${error.message}`);
     };
 };
 

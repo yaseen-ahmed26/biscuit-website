@@ -47,7 +47,8 @@ This payload didn't match the Pydantic schema at all. First of all, I never set 
 ---
 ### EXTRA NOTES
 - I did way too much in a single commit, commit 4 I think. Did account page, login functionalies, token storage, logut etc. Should've been split into 3 commits. 
-- Should probably not include const url = "..." in each file. Production would use a .env file like Python. Since the URL is local, it's fine, but usually would hide it if it's deployed.
+- Should probably not include const url = "..." in each file. ~~Production would use a .env file like Python. Since the URL is local, it's fine, but usually would hide it if it's deployed.~~ JavaScript does not have env files.
+- Eventually, access tokens would need to be stored in http cookies, rather than localstorage. JavaScript cannot read http cookies so it's better security against malicious scripts.
 
 ### ABBREVIATIONS
 HTML: Hyper Text Markup Language
