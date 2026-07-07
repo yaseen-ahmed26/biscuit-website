@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code</title>
+    <title>Delete</title>
     <link rel="stylesheet" href="../css/global.css">
 </head>
 <body>
@@ -19,16 +19,16 @@
 
     <div class="wrapper">
         <div class="card-1" id="register-card">
-            <h2>Login with Code</h2>
-            <p>Enter the code displayed in game to connect your account. Your game data will be linked to this account.</p>
+            <h2>Delete Account</h2>
+            <p>Permanently delete your account. Enter the phrase "delete my account" to confirm.</p>
             <div class="input-box">
-                <input type="text" required id="input-code" placeholder="XXXXXXX">
+                <input type="text" required id="input-phrase" placeholder="delete my account">
             </div>
-            <button class="final-btn" id="submit-btn">Submit</button>
+            <button class="final-btn" id="submit-btn" disabled>Enter Phrase</button>
         </div>
     </div>
 
-    <script type="module" src="../js/code.js"></script>
+    <script type="module" src="../js/delete.js"></script>
 </div>
 </body>
 </html>

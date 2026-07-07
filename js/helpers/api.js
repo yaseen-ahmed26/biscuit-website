@@ -94,3 +94,18 @@ export async function updateUserEndpoint(username, email, password, currentPassw
 
     return handleResponse(response)
 }
+
+export async function deleteUserEndpoint(){
+    const savedData = JSON.parse(localStorage.getItem("user_data"));
+    const token = localStorage.getItem("access_token");
+    const id = savedData.id;
+
+    const response = await fetch(`${baseURL}/users/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+    });
+
+    return handleResponse(response)
+}
