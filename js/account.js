@@ -22,8 +22,8 @@ function loadUserData(){
 
     const saveData = JSON.parse(userData);
 
-    emailLabel.textContent = saveData.email;
-    usernameLabel.textContent = saveData.username;
+    emailLabel.textContent = "Email: " + saveData.email;
+    usernameLabel.textContent = "Username: " + saveData.username;
 }
 
 function logOutUser(){
