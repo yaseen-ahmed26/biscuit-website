@@ -5,11 +5,11 @@ const updateBtn = document.getElementById("update-btn")
 
 const usernameLabel = document.getElementById("username-label")
 const emailLabel = document.getElementById("email-label")
-const passwordLabel = document.getElementById("password-label")
 
 const updateEmailField = document.getElementById("update-email")
 const updateUsernameField = document.getElementById("update-username")
-const currentPasswordField = document.getElementById("update-password")
+const updatePasswordField = document.getElementById("update-password")
+const currentPasswordField = document.getElementById("current-password")
 
 function loadUserData(){
     const userData = localStorage.getItem("user_data");
@@ -37,6 +37,7 @@ async function updateUserData(){
         const data = await updateUserEndpoint(
             updateUsernameField.value,
             updateEmailField.value,
+            updatePasswordField.value,
             currentPasswordField.value
         )
 
@@ -48,6 +49,7 @@ async function updateUserData(){
 
         updateEmailField.value = ""
         updateUsernameField.value = ""
+        updatePasswordField.value = ""
     }catch (error){
         alert(`${error.message}`)
     }

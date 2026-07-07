@@ -71,7 +71,7 @@ export async function verifyCodeEndpoint(code) {
     return handleResponse(response)
 }
 
-export async function updateUserEndpoint(username, email, currentPassword) {
+export async function updateUserEndpoint(username, email, password, currentPassword) {
     const savedData = JSON.parse(localStorage.getItem("user_data"));
     const token = localStorage.getItem("access_token");
     const id = savedData.id;
@@ -79,6 +79,7 @@ export async function updateUserEndpoint(username, email, currentPassword) {
     const userData = {
         username: username || null,
         email: email || null,
+        password: password || null,
         current_password: currentPassword
     }
 
