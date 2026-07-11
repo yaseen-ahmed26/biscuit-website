@@ -164,6 +164,9 @@ header{
     right: 8px;
     font-size: 1.2em;
     line-height: 57px;
+    background: none;
+    border: none;
+    color: white;
 }
 
 .final-btn{
