@@ -1,3 +1,5 @@
+import {getUserId, getToken, getSaveId} from "./localstorage.js"
+
 const baseURL = "http://127.0.0.1:8000/api"
 
 async function handleResponse(response){
@@ -72,9 +74,8 @@ export async function verifyCodeEndpoint(code) {
 }
 
 export async function updateUserEndpoint(username, email, password, currentPassword) {
-    const savedData = JSON.parse(localStorage.getItem("user_data"));
-    const token = localStorage.getItem("access_token");
-    const id = savedData.id;
+    const token = getToken();
+    const id = getUserId();
 
     const userData = {
         username: username || null,
@@ -96,9 +97,8 @@ export async function updateUserEndpoint(username, email, password, currentPassw
 }
 
 export async function deleteUserEndpoint(){
-    const savedData = JSON.parse(localStorage.getItem("user_data"));
-    const token = localStorage.getItem("access_token");
-    const id = savedData.id;
+    const token = getToken();
+    const id = getUserId();
 
     const response = await fetch(`${baseURL}/users/${id}`, {
         method: "DELETE",
@@ -111,8 +111,7 @@ export async function deleteUserEndpoint(){
 }
 
 export async function getSavedDataEndpoint(){
-    const savedData = JSON.parse(localStorage.getItem("user_save"));
-    const save_id = savedData.save_id;
+    const save_id = getSaveId();
 
     const response = await fetch(`${baseURL}/saves/${save_id}`, {
         method: "GET",
