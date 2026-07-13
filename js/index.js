@@ -26,8 +26,13 @@ async function getCurrentUser(token) {
         }
 
         const userData = await response.json();
+        const {save, ...user} = userData;
+        
+        localStorage.setItem("user_data", JSON.stringify(user));
 
-        localStorage.setItem("user_data", JSON.stringify(userData));
+        if(save){
+            localStorage.setItem("user_save", JSON.stringify(save));
+        }
 
         window.location.replace("pages/account.html");
     
