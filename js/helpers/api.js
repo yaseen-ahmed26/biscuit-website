@@ -109,3 +109,14 @@ export async function deleteUserEndpoint(){
 
     return handleResponse(response)
 }
+
+export async function getSavedDataEndpoint(){
+    const savedData = JSON.parse(localStorage.getItem("user_save"));
+    const save_id = savedData.save_id;
+
+    const response = await fetch(`${baseURL}/saves/${save_id}`, {
+        method: "GET",
+    });
+
+    return handleResponse(response)
+}
