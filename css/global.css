@@ -95,28 +95,17 @@ header{
     color: black
 }
 
-.wrapper .card-1{
+.wrapper .card{
     width: 100%;
     padding: 40px;
 }
 
-.wrapper .card-2{
-    display: none;
-    width: 100%;
-    padding: 40px;
-}
-
-.card-1 h2{
+.card h2{
     font-size: 2rem;
     color: rgb(255, 255, 255);
     text-align: center;
 }
 
-.card-2 h2{
-    font-size: 2rem;
-    color: rgb(255, 255, 255);
-    text-align: center;
-}
 
 #description{
     margin-top: 1rem;
