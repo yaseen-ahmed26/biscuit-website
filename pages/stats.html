@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete</title>
+    <title>Stats</title>
     <link rel="stylesheet" href="../css/global.css">
 </head>
 <body>
@@ -20,16 +20,22 @@
 
     <div class="wrapper">
         <div class="card-1" id="register-card">
-            <h2>Delete Account</h2>
-            <p id="description">Permanently delete your account. Enter the phrase "delete my account" to confirm.</p>
-            <div class="input-box">
-                <input type="text" required id="input-phrase" placeholder="delete my account">
+            <h2>Game Stats</h2>
+            <p id="description">View your game progress and stats.</p>
+            <div class="display-box">
+                <p id="username-label">Lifetime Biscuits: 1000</p>
             </div>
-            <button class="final-btn" id="submit-btn" disabled>Enter Phrase</button>
+            <div class="display-box">
+                <p id="email-label">Lifetime Playtime: 5000</p>
+            </div>
+            <div class="display-box">
+                <p id="password-label">Lifetime Clicks: 100</p>
+            </div>
+            <button class="final-btn" id="refresh-btn">Refresh</button>
         </div>
     </div>
 
-    <script type="module" src="../js/delete.js"></script>
+    <script type="module" src="../js/stats.js"></script>
 </div>
 </body>
 </html>

@@ -3,13 +3,6 @@
 This is some personal notes based off the project.
 
 ---
-### FUTURE IDEAS:
-- Game dashboard. This will be a seperate HTML page.
-- Better cover image
-- When creating an account, it showed auto-log you in. This probably has to be done by seperating the login and register logic and pages.
-- Changing password field in the account details.
-
----
 ### TOOLS
 **JavaScript**: The 'brain' of the website. Makes the page dynamic and responsive.
 
