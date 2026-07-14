@@ -9,7 +9,7 @@ body{
     justify-content: center;
     align-items: center;   
     min-height: 100vh;
-    background: url(../images/p3y2-dc-nologo.png) no-repeat;
+    background-color: #070708;
     background-size: cover;
     background-position: center;
 }
@@ -68,7 +68,7 @@ header{
     border: 2px solid hsla(0, 0%, 100%, 0.765);
     border-radius: 20px;
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px black;
+    box-shadow: 0 0 20px rgb(152, 152, 152);
     display: flex;
     justify-content: center;
     align-items: center;
