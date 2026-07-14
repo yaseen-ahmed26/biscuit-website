@@ -1,4 +1,4 @@
-import { createUserEndpoint } from "./helpers/api.js";
+import { createUserEndpoint, loginEndpoint, getCurrentUser } from "./helpers/api.js";
 
 const actionBtn = document.getElementById("action-btn");
 const registerBtn = document.getElementById("register-btn")
@@ -32,7 +32,12 @@ async function createUser(event){
             passwordField.value
         )
 
-        alert('Account created');
+        const loginData = await loginEndpoint(emailField.value, passwordField.value)
+        
+        localStorage.setItem("access_token", loginData.access_token);
+        alert("Login successful");
+
+        await getCurrentUser();
     }catch (error){
         alert(`${error.message}`)
     }

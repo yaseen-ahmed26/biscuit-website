@@ -47,7 +47,7 @@ export async function getCurrentUser(){
             saveToLocalStorage("user_save", JSON.stringify(save))
         }
 
-        window.location.replace("pages/account.html");
+        window.location.replace("../../pages/account.html");
     
     }catch (error){
         alert(`An error occurred: ${error.message}`);
