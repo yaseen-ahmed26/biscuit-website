@@ -1,4 +1,4 @@
-import { loginEndpoint } from "./helpers/api.js";
+import { loginEndpoint, getCurrentUser } from "./helpers/api.js";
 
 const actionBtn = document.getElementById("action-btn");
 const loginBtn = document.getElementById("login-btn")
@@ -11,36 +11,6 @@ const loginPasswordField = document.getElementById("login-password")
 
 const url = "http://127.0.0.1:8000/api/users"
 
-async function getCurrentUser(token) {
-    try{
-        const response = await fetch(url + "/me", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        });
-
-        if(!response.ok){
-            alert("Failed to fetch user data");
-            return;
-        }
-
-        const userData = await response.json();
-        const {save, ...user} = userData;
-        
-        localStorage.setItem("user_data", JSON.stringify(user));
-
-        if(save){
-            localStorage.setItem("user_save", JSON.stringify(save));
-        }
-
-        window.location.replace("pages/account.html");
-    
-    }catch (error){
-        alert(`An error occurred: ${error.message}`);
-    };
-};
-
 async function loginUser(event){
     event.preventDefault();
 
@@ -50,7 +20,7 @@ async function loginUser(event){
         localStorage.setItem("access_token", data.access_token);
         alert("Login successful");
 
-        await getCurrentUser(data.access_token);
+        await getCurrentUser();
     }catch (error) {
         alert(`${error.message}`);
     };

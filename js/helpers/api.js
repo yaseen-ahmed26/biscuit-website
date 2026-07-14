@@ -1,4 +1,4 @@
-import {getUserId, getToken, getSaveId} from "./localstorage.js"
+import {getUserId, getToken, getSaveId, saveToLocalStorage} from "./localstorage.js"
 
 const baseURL = "http://127.0.0.1:8000/api"
 
@@ -20,6 +20,38 @@ async function handleResponse(response){
     };
 
     return data
+}
+
+export async function getCurrentUser(){
+    const token = getToken();
+
+    try{
+        const response = await fetch(baseURL + "/users/me", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if(!response.ok){
+            alert("Failed to fetch user data");
+            return;
+        }
+
+        const userData = await response.json();
+        const {save, ...user} = userData;
+        
+        saveToLocalStorage("user_data", JSON.stringify(user))
+
+        if(save){
+            saveToLocalStorage("user_save", JSON.stringify(save))
+        }
+
+        window.location.replace("pages/account.html");
+    
+    }catch (error){
+        alert(`An error occurred: ${error.message}`);
+    };
 }
 
 export async function loginEndpoint(email, password) {
@@ -59,7 +91,7 @@ export async function verifyCodeEndpoint(code) {
     const postData = {
         login_code: code
     }
-    const token = localStorage.getItem("access_token")
+    const token = getToken()
 
     const response = await fetch(`${baseURL}/codes/verify`, {
         method: "POST",
