@@ -1,15 +1,10 @@
 import { deleteUserEndpoint } from "./helpers/api.js"
+import { logOut } from "./helpers/localstorage.js";
 
 const actionBtn = document.getElementById("action-btn")
 const submitBtn = document.getElementById("submit-btn")
 
 const inputPhraseField = document.getElementById("input-phrase")
-
-function logOutUser(){
-    alert("Successfully logged out");
-    localStorage.clear();
-    window.location.replace("../index.html");
-}
 
 async function submitCode(){
     try{
@@ -34,6 +29,6 @@ async function checkCorrectPhrase(){
     }
 }
 
-actionBtn.addEventListener("click", logOutUser);
+actionBtn.addEventListener("click", logOut);
 submitBtn.addEventListener("click", submitCode);
-inputPhraseField.addEventListener("focusout", checkCorrectPhrase)
+inputPhraseField.addEventListener("change", checkCorrectPhrase)

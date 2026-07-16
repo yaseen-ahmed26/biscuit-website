@@ -15,3 +15,9 @@ export function getSaveId(){
     const savedData = JSON.parse(localStorage.getItem("user_save"));
     return savedData.save_id;
 }
+
+export function logOut(){
+    alert("Successfully logged out");
+    localStorage.clear();
+    window.location.replace("../../../index.html");
+}

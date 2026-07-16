@@ -1,4 +1,5 @@
 import { getSavedDataEndpoint } from "./helpers/api.js";
+import { logOut } from "./helpers/localstorage.js";
 
 const actionBtn = document.getElementById("action-btn");
 const refreshBtn = document.getElementById("refresh-btn")
@@ -23,12 +24,6 @@ function loadSaveData(){
     clicksLabel.textContent = "Lifetime Clicks: " + saveData.total_clicks;
 }
 
-function logOutUser(){
-    alert("Successfully logged out");
-    localStorage.clear();
-    window.location.replace("../index.html");
-}
-
 async function updateSaveData(){
     try{
         const data = await getSavedDataEndpoint()
@@ -43,6 +38,6 @@ async function updateSaveData(){
     }
 }
 
-actionBtn.addEventListener("click", logOutUser);
+actionBtn.addEventListener("click", logOut);
 refreshBtn.addEventListener("click", updateSaveData);
 loadSaveData();

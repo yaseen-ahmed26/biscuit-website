@@ -1,4 +1,5 @@
 import { updateUserEndpoint } from "./helpers/api.js"
+import { logOut } from "./helpers/localstorage.js";
 
 const actionBtn = document.getElementById("action-btn")
 const updateBtn = document.getElementById("update-btn")
@@ -26,12 +27,6 @@ function loadUserData(){
     usernameLabel.textContent = "Username: " + saveData.username;
 }
 
-function logOutUser(){
-    alert("Successfully logged out");
-    localStorage.clear();
-    window.location.replace("../index.html");
-}
-
 async function updateUserData(){
     try{
         const data = await updateUserEndpoint(
@@ -55,6 +50,6 @@ async function updateUserData(){
     }
 }
 
-actionBtn.addEventListener("click", logOutUser);
+actionBtn.addEventListener("click", logOut);
 updateBtn.addEventListener("click", updateUserData);
 loadUserData();

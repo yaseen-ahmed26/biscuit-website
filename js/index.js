@@ -9,8 +9,6 @@ const passwordImage = document.getElementById("image")
 const loginEmailField = document.getElementById("login-email")
 const loginPasswordField = document.getElementById("login-password")
 
-const url = "http://127.0.0.1:8000/api/users"
-
 async function loginUser(event){
     event.preventDefault();
 
