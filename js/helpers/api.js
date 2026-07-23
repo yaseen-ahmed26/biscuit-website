@@ -39,8 +39,8 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
     if(!response.ok){
         if(response.status === 401){
             if(retry){
-                // logOut()
-                throw new Error("(401) Session expired");
+                logOut()
+                console.log("(401) Session expired");
             }
 
             const refreshSuccess = await getNewRefresh();
@@ -48,8 +48,8 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
             if(refreshSuccess){
                 return await makeHTTPRequest(requestName, args, true);
             } else {
-                // logOut()
-                throw new Error("(401) Refresh failed");
+                logOut()
+                console.log("(401) Refresh failed");
             }
         }
     };
@@ -71,6 +71,9 @@ async function getNewRefresh(){
             body: JSON.stringify(data),
             credentials: "include"
         });
+
+        const refreshData = await handleResponse(response)
+        saveToLocalStorage("access_token", refreshData.access_token)
 
         return response.ok;
     }catch(error){

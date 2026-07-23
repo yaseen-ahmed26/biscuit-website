@@ -39,6 +39,13 @@ This is some personal notes based off the project.
 
 2. **Double JSON Parsing**: Was parsing the HTTP request response multiple times, and it can only be done once. The solution was just to do it at the end of the function and only look out for 401 response codes.
 
+---
+### 2. Design Notes
+
+---
+### 3. Extra Notes
+- No data is needed to be sent to /refresh endpoint, so can remove that
+
 ## LEARNING
 ### 1. Tools
 **JavaScript**: The 'brain' of the website. Makes the page dynamic and responsive.
