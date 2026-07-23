@@ -17,8 +17,8 @@ async function handleResponse(response){
 
     try{
         data = await response.json();
-    } catch(error){
-        console.log(error);
+    }catch(error){
+        data = {};
     };
 
     if(!response.ok){
@@ -27,23 +27,14 @@ async function handleResponse(response){
             : data.message || data.detail || "Unknown error";
         
         throw new Error(`(${response.status}) ${errorMessage}`);
-
-        return response
     };
+
     return data
 }
 
 export async function makeHTTPRequest(requestName, args = [], retry = false){
     const request = endpoints[requestName] || endpoints.fallback
     let response = await request(...args)
-
-    let data = {};
-
-    try{
-        data = await response.json();
-    }catch(error){
-        console.log(error);
-    };
 
     if(!response.ok){
         if(response.status === 401){
@@ -61,20 +52,6 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
                 throw new Error("(401) Refresh failed");
             }
         }
-
-        let data = {};
-
-        try{
-            data = await response.json();
-        }catch (error) {
-            console.log("Failed to parse response: ", error);
-        }
-
-        const errorMessage = Array.isArray(data.detail)
-            ? data.detail?.[0]?.msg
-            : data.message || data.detail || "Unknown error";
-        
-        throw new Error(`(${response.status}) ${errorMessage}`);
     };
 
     return await handleResponse(response);

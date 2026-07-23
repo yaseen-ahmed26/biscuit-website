@@ -37,6 +37,8 @@ This is some personal notes based off the project.
 ### 1. Fixed Issues and Challenges
 1. **Infinite refresh recursion**: The issue was that we need to catch any 401 due to invalid tokes to get a new refresh token. If we then fail to get a new access token, it will call the request again casuing infinite recursion. The solution was to have a bool that we flip. Initally the bool is false because we don't need to retry. Then if we get a 401, and the refresh endpoint returns success, try the request again. If that request gives a 401, then we know the backend send no and we logut the user.
 
+2. **Double JSON Parsing**: Was parsing the HTTP request response multiple times, and it can only be done once. The solution was just to do it at the end of the function and only look out for 401 response codes.
+
 ## LEARNING
 ### 1. Tools
 **JavaScript**: The 'brain' of the website. Makes the page dynamic and responsive.

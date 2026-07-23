@@ -31,10 +31,10 @@ async function updateUserData(){
     try{
         const data = await makeHTTPRequest(
             "update",
-            updateUsernameField.value,
+            [updateUsernameField.value,
             updateEmailField.value,
             updatePasswordField.value,
-            currentPasswordField.value
+            currentPasswordField.value]
         )
 
         alert('Success');

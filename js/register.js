@@ -28,9 +28,9 @@ async function createUser(event){
     try{
         const data = await makeHTTPRequest(
             "create",
-            emailField.value,
+            [emailField.value,
             usernameField.value,
-            passwordField.value
+            passwordField.value]
         )
 
         const loginData = await makeHTTPRequest("login", emailField.value, passwordField.value)

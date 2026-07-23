@@ -13,7 +13,7 @@ async function loginUser(event){
     event.preventDefault();
 
     try{
-        const data = await makeHTTPRequest("login", loginEmailField.value, loginPasswordField.value)
+        const data = await makeHTTPRequest("login", [loginEmailField.value, loginPasswordField.value])
 
         localStorage.setItem("access_token", data.access_token);
         alert("Login successful");
