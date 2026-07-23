@@ -65,7 +65,8 @@ export async function loginEndpoint(email, password) {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: formData
+        body: formData,
+        credentials: "include"
     });
 
     return handleResponse(response)
