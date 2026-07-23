@@ -1,4 +1,4 @@
-import {getUserId, getToken, getSaveId, saveToLocalStorage} from "./localstorage.js"
+import {getUserId, getToken, getSaveId, saveToLocalStorage, logOut} from "./localstorage.js"
 
 const baseURL = "http://127.0.0.1:8000/api"
 
@@ -25,19 +25,77 @@ async function handleResponse(response){
         const errorMessage = Array.isArray(data.detail)
             ? data.detail?.[0]?.msg
             : data.message || data.detail || "Unknown error";
-
+        
         throw new Error(`(${response.status}) ${errorMessage}`);
-    };
 
+        return response
+    };
     return data
 }
 
-export async function makeHTTPRequest(requestName, ...args){
+export async function makeHTTPRequest(requestName, args = [], retry = false){
     const request = endpoints[requestName] || endpoints.fallback
-    const response = await request(...args)
-    const data = await handleResponse(response)
+    let response = await request(...args)
 
-    return data
+    let data = {};
+
+    try{
+        data = await response.json();
+    }catch(error){
+        console.log(error);
+    };
+
+    if(!response.ok){
+        if(response.status === 401){
+            if(retry){
+                logOut()
+                throw new Error("(401) Session expired");
+            }
+
+            const refreshSuccess = await getNewRefresh();
+
+            if(refreshSuccess){
+                return await makeHTTPRequest(requestName, args, true);
+            } else {
+                logOut()
+                throw new Error("(401) Refresh failed");
+            }
+        }
+
+        let data = {};
+
+        try{
+            data = await response.json();
+        }catch (error) {
+            console.log("Failed to parse response: ", error);
+        }
+
+        const errorMessage = Array.isArray(data.detail)
+            ? data.detail?.[0]?.msg
+            : data.message || data.detail || "Unknown error";
+        
+        throw new Error(`(${response.status}) ${errorMessage}`);
+    };
+
+    return await handleResponse(response);
+}
+
+async function getNewRefresh(){
+    try{
+        const response = await fetch(`${baseURL}/auth/refresh`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            credentials: "include"
+        });
+
+        return response.ok;
+    }catch (error) {
+        console.error("Refresh request error: ", error);
+
+        return false;
+    }
 }
 
 export async function getCurrentUser(){
@@ -78,7 +136,7 @@ async function login(email, password) {
     formData.append("username", email);
     formData.append("password", password);
 
-    return fetch(`${baseURL}/users/token`, {
+    return fetch(`${baseURL}/auth/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
