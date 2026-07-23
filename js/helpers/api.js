@@ -39,7 +39,7 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
     if(!response.ok){
         if(response.status === 401){
             if(retry){
-                logOut()
+                // logOut()
                 throw new Error("(401) Session expired");
             }
 
@@ -48,7 +48,7 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
             if(refreshSuccess){
                 return await makeHTTPRequest(requestName, args, true);
             } else {
-                logOut()
+                // logOut()
                 throw new Error("(401) Refresh failed");
             }
         }
@@ -58,17 +58,22 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
 }
 
 async function getNewRefresh(){
+    const data = {
+        user_id: getUserId()
+    }
+
     try{
         const response = await fetch(`${baseURL}/auth/refresh`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/json"
             },
+            body: JSON.stringify(data),
             credentials: "include"
         });
 
         return response.ok;
-    }catch (error) {
+    }catch(error){
         console.error("Refresh request error: ", error);
 
         return false;
