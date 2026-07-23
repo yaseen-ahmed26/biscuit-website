@@ -1,4 +1,4 @@
-import { updateUserEndpoint } from "./helpers/api.js"
+import { makeHTTPRequest } from "./helpers/api.js"
 import { logOut } from "./helpers/localstorage.js";
 
 const actionBtn = document.getElementById("action-btn")
@@ -29,7 +29,8 @@ function loadUserData(){
 
 async function updateUserData(){
     try{
-        const data = await updateUserEndpoint(
+        const data = await makeHTTPRequest(
+            "update",
             updateUsernameField.value,
             updateEmailField.value,
             updatePasswordField.value,

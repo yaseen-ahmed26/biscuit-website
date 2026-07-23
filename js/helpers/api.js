@@ -2,6 +2,16 @@ import {getUserId, getToken, getSaveId, saveToLocalStorage} from "./localstorage
 
 const baseURL = "http://127.0.0.1:8000/api"
 
+const endpoints = {
+    login: login,
+    create: createUser,
+    code: verifyCode,
+    update: updateUser,
+    delete: deleteUser,
+    savedata: getSavedData,
+    fallback: () => "No method found"
+}
+
 async function handleResponse(response){
     let data = {};
 
@@ -18,6 +28,14 @@ async function handleResponse(response){
 
         throw new Error(`(${response.status}) ${errorMessage}`);
     };
+
+    return data
+}
+
+export async function makeHTTPRequest(requestName, ...args){
+    const request = endpoints[requestName] || endpoints.fallback
+    const response = await request(...args)
+    const data = await handleResponse(response)
 
     return data
 }
@@ -54,13 +72,13 @@ export async function getCurrentUser(){
     };
 }
 
-export async function loginEndpoint(email, password) {
+async function login(email, password) {
     const formData = new URLSearchParams();
 
     formData.append("username", email);
     formData.append("password", password);
 
-    const response = await fetch(`${baseURL}/users/token`, {
+    return fetch(`${baseURL}/users/token`, {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -68,33 +86,29 @@ export async function loginEndpoint(email, password) {
         body: formData,
         credentials: "include"
     });
-
-    return handleResponse(response)
 }
 
-export async function createUserEndpoint(email, username, password) {
+async function createUser(email, username, password) {
     const userData = {
         email: email,
         username: username,
         password: password
     };
 
-    const response = await fetch(`${baseURL}/users`, {
+    return fetch(`${baseURL}/users`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(userData)
     })
-
-    return handleResponse(response)
 }
 
-export async function verifyCodeEndpoint(code) {
+async function verifyCode(code) {
     const postData = {
         login_code: code
     }
     const token = getToken()
 
-    const response = await fetch(`${baseURL}/codes/verify`, {
+   return fetch(`${baseURL}/codes/verify`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -102,11 +116,9 @@ export async function verifyCodeEndpoint(code) {
         },
         body: JSON.stringify(postData)
     })
-
-    return handleResponse(response)
 }
 
-export async function updateUserEndpoint(username, email, password, currentPassword) {
+async function updateUser(username, email, password, currentPassword) {
     const token = getToken();
     const id = getUserId();
 
@@ -117,7 +129,7 @@ export async function updateUserEndpoint(username, email, password, currentPassw
         current_password: currentPassword
     }
 
-    const response = await fetch(`${baseURL}/users/${id}`, {
+    return fetch(`${baseURL}/users/${id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -125,30 +137,24 @@ export async function updateUserEndpoint(username, email, password, currentPassw
         },
         body: JSON.stringify(userData)
     });
-
-    return handleResponse(response)
 }
 
-export async function deleteUserEndpoint(){
+async function deleteUser(){
     const token = getToken();
     const id = getUserId();
 
-    const response = await fetch(`${baseURL}/users/${id}`, {
+    return fetch(`${baseURL}/users/${id}`, {
         method: "DELETE",
         headers: {
             "Authorization": `Bearer ${token}`
         },
     });
-
-    return handleResponse(response)
 }
 
-export async function getSavedDataEndpoint(){
+async function getSavedData(){
     const save_id = getSaveId();
 
-    const response = await fetch(`${baseURL}/saves/${save_id}`, {
+    return fetch(`${baseURL}/saves/${save_id}`, {
         method: "GET",
     });
-
-    return handleResponse(response)
 }

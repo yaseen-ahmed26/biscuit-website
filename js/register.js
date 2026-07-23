@@ -1,4 +1,4 @@
-import { createUserEndpoint, loginEndpoint, getCurrentUser } from "./helpers/api.js";
+import { getCurrentUser, makeHTTPRequest } from "./helpers/api.js";
 
 const actionBtn = document.getElementById("action-btn");
 const registerBtn = document.getElementById("register-btn")
@@ -26,13 +26,14 @@ async function createUser(event){
     }
 
     try{
-        const data = await createUserEndpoint(
+        const data = await makeHTTPRequest(
+            "create",
             emailField.value,
             usernameField.value,
             passwordField.value
         )
 
-        const loginData = await loginEndpoint(emailField.value, passwordField.value)
+        const loginData = await makeHTTPRequest("login", emailField.value, passwordField.value)
         
         localStorage.setItem("access_token", loginData.access_token);
         alert("Login successful");

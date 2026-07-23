@@ -1,4 +1,4 @@
-import { getSavedDataEndpoint } from "./helpers/api.js";
+import { makeHTTPRequest } from "./helpers/api.js";
 import { logOut } from "./helpers/localstorage.js";
 
 const actionBtn = document.getElementById("action-btn");
@@ -39,7 +39,7 @@ function loadSaveData(){
 
 async function updateSaveData(){
     try{
-        const data = await getSavedDataEndpoint()
+        const data = await makeHTTPRequest("savedata")
 
         alert('Success');
 

@@ -1,4 +1,4 @@
-import { loginEndpoint, getCurrentUser } from "./helpers/api.js";
+import { getCurrentUser,  makeHTTPRequest} from "./helpers/api.js";
 
 const actionBtn = document.getElementById("action-btn");
 const loginBtn = document.getElementById("login-btn")
@@ -13,7 +13,7 @@ async function loginUser(event){
     event.preventDefault();
 
     try{
-        const data = await loginEndpoint(loginEmailField.value, loginPasswordField.value)
+        const data = await makeHTTPRequest("login", loginEmailField.value, loginPasswordField.value)
 
         localStorage.setItem("access_token", data.access_token);
         alert("Login successful");
