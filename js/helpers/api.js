@@ -1,4 +1,4 @@
-import {getUserId, getToken, getSaveId, saveToLocalStorage, logOut} from "./localstorage.js"
+import {getUserId, getSaveId, saveToLocalStorage, logOut} from "./localstorage.js"
 
 const baseURL = "http://127.0.0.1:8000/api"
 
@@ -37,7 +37,7 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
     let response = await request(...args)
 
     if(!response.ok){
-        if(response.status === 401){
+        if(response.status === 401 && requestName !== "login"){
             if(retry){
                 logOut()
                 console.log("(401) Session expired");
@@ -64,9 +64,6 @@ async function getNewRefresh(){
             credentials: "include"
         });
 
-        const refreshData = await handleResponse(response)
-        saveToLocalStorage("access_token", refreshData.access_token)
-
         return response.ok;
     }catch(error){
         console.error("Refresh request error: ", error);
@@ -76,16 +73,12 @@ async function getNewRefresh(){
 }
 
 export async function getCurrentUser(){
-    const token = getToken();
-
     try{
         const response = await fetch(baseURL + "/users/me", {
             method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+            credentials: "include"
         });
-
+        
         if(!response.ok){
             alert("Failed to fetch user data");
             return;
@@ -141,20 +134,18 @@ async function verifyCode(code) {
     const postData = {
         login_code: code
     }
-    const token = getToken()
 
    return fetch(`${baseURL}/codes/verify`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(postData)
+        body: JSON.stringify(postData),
+        credentials: "include"
     })
 }
 
 async function updateUser(username, email, password, currentPassword) {
-    const token = getToken();
     const id = getUserId();
 
     const userData = {
@@ -168,21 +159,18 @@ async function updateUser(username, email, password, currentPassword) {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
+        credentials: "include"
     });
 }
 
 async function deleteUser(){
-    const token = getToken();
     const id = getUserId();
 
     return fetch(`${baseURL}/users/${id}`, {
         method: "DELETE",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        },
+        credentials: "include"
     });
 }
 

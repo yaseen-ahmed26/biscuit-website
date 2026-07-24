@@ -33,9 +33,8 @@ async function createUser(event){
             passwordField.value]
         )
 
-        const loginData = await makeHTTPRequest("login", emailField.value, passwordField.value)
-        
-        localStorage.setItem("access_token", loginData.access_token);
+        const loginData = await makeHTTPRequest("login", [emailField.value, passwordField.value])
+
         alert("Login successful");
 
         await getCurrentUser();

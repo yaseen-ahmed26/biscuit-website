@@ -45,6 +45,8 @@ This is some personal notes based off the project.
 ---
 ### 3. Extra Notes
 - No data is needed to be sent to /refresh endpoint, so can remove that
+- Moving over access tokens was mostly human error. Keep forgetting to add credentials: "include" to requests, that makehttprequest requires an array of args. Tons of time lost but at least this project got a whole lot more secure. Next is to figure out the active sessions page
+- Logout functionality likely requires the backend sending dummy cookies to replace the refresh/access ones since JavaScript cannot access or read it.
 
 ## LEARNING
 ### 1. Tools

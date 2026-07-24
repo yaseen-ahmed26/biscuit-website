@@ -4,15 +4,16 @@ Rough roadmap of features I would like to implement and how I will.
 ---
 
 #### Quick Overview
-**[ ]** = To-do | **[x]** = Complete | **[?]** Under Consideration | **[/]** = In Progress
+**[ ]** = To-do | **[✓]** = Complete | **[?]** Under Consideration | **[/]** = In Progress
 
 - [ ] Leaderboards
 - [ ] Shareable game stats via link
 - [ ] Profile page
-- [?] Connected sessions page
+- [ ] Connected sessions page
 - [ ] Rate limiting for updating lifetime saves
 - [?] Unique toast notifications or models
-- [/] Improved api.js structure and factoring for refresh tokens
+- [✓] Improved api.js structure and factoring for refresh tokens
+- [✓] Store access tokens in httponly cookie storage rather than localstorage
 
 ---
 
