@@ -58,17 +58,9 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
 }
 
 async function getNewRefresh(){
-    const data = {
-        user_id: getUserId()
-    }
-
     try{
         const response = await fetch(`${baseURL}/auth/refresh`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data),
             credentials: "include"
         });
 
