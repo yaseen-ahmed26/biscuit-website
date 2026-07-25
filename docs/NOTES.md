@@ -41,12 +41,16 @@ This is some personal notes based off the project.
 
 ---
 ### 2. Design Notes
+- There is a lot of duplication for all HTML pages. Mostly the core structure (wrapper then cards) and the navigation bar. So all this would need to change.
+- Also likely better to have individual CSS pages for each HTML page now. Much more control, I did not anticipate to have this many HTML pages (and will likely have 1-2 more). 
+- The leaderboards page looks incredibly bad. Will change at some point but basic functionally it works.
 
 ---
 ### 3. Extra Notes
 - No data is needed to be sent to /refresh endpoint, so can remove that
 - Moving over access tokens was mostly human error. Keep forgetting to add credentials: "include" to requests, that makehttprequest requires an array of args. Tons of time lost but at least this project got a whole lot more secure. Next is to figure out the active sessions page
 - Logout functionality likely requires the backend sending dummy cookies to replace the refresh/access ones since JavaScript cannot access or read it.
+- No longer doing a sessions page.
 
 ## LEARNING
 ### 1. Tools

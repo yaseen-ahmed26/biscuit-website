@@ -9,6 +9,7 @@ const endpoints = {
     update: updateUser,
     delete: deleteUser,
     savedata: getSavedData,
+    leaderboard: getLeaderboardUser,
     fallback: () => "No method found"
 }
 
@@ -178,6 +179,12 @@ async function getSavedData(){
     const save_id = getSaveId();
 
     return fetch(`${baseURL}/saves/${save_id}`, {
+        method: "GET",
+    });
+}
+
+async function getLeaderboardUser(){
+    return fetch(`${baseURL}/saves/leaderboard`, {
         method: "GET",
     });
 }

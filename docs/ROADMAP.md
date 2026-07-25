@@ -6,14 +6,16 @@ Rough roadmap of features I would like to implement and how I will.
 #### Quick Overview
 **[ ]** = To-do | **[✓]** = Complete | **[?]** Under Consideration | **[/]** = In Progress
 
-- [ ] Leaderboards
+- [✓] Leaderboards
 - [ ] Shareable game stats via link
 - [ ] Profile page
-- [ ] Connected sessions page
+- ~~[ ] Connected sessions page~~
 - [ ] Rate limiting for updating lifetime saves
 - [?] Unique toast notifications or models
 - [✓] Improved api.js structure and factoring for refresh tokens
 - [✓] Store access tokens in httponly cookie storage rather than localstorage
+
+No longer doing a connected sessions page. The project isn't deployed yet so the only way I can get the user's country is the language. Works fine for Godot game linking because it's short and quick but I would prefer to do it the professional way and use IP lookups from Render or similar for a security feature like sessions.
 
 ---
 
@@ -45,9 +47,9 @@ could have 1 profile page that displays username, join date, games connected
 
 then have a settings page like we do now
 
-- **connections, display connect accounts and their device/country**
+- ~~**connections, display connect accounts and their device/country**~~
 
-ties into the refresh tokens from above
+~~ties into the refresh tokens from above~~
 
 - **unique popup rather than native window alert**
 
