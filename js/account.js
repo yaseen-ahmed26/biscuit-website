@@ -1,5 +1,5 @@
 import { makeHTTPRequest } from "./helpers/api.js"
-import { logOut } from "./helpers/localstorage.js";
+import { logOut, getUserId } from "./helpers/localstorage.js";
 
 const actionBtn = document.getElementById("action-btn")
 const updateBtn = document.getElementById("update-btn")
@@ -29,13 +29,21 @@ function loadUserData(){
 
 async function updateUserData(){
     try{
-        const data = await makeHTTPRequest(
-            "update",
-            [updateUsernameField.value,
-            updateEmailField.value,
-            updatePasswordField.value,
-            currentPasswordField.value]
-        )
+        const id = getUserId();
+        
+        const updateData = {
+            username: updateUsernameField.value || null,
+            email: updateEmailField.value || null,
+            password: updatePasswordField.value || null,
+            current_password: currentPasswordField.value
+        }
+
+        const data = await makeHTTPRequest({
+            requestType: "PATCH",
+            requestBody: updateData,
+            requestHeaders: {"Content-Type": "application/json"},
+            requestURL: `users/${id}`
+        })
 
         alert('Success');
 

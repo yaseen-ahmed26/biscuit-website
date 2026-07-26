@@ -1,5 +1,5 @@
 import { makeHTTPRequest } from "./helpers/api.js"
-import { logOut } from "./helpers/localstorage.js";
+import { logOut, getUserId } from "./helpers/localstorage.js";
 
 const actionBtn = document.getElementById("action-btn")
 const submitBtn = document.getElementById("submit-btn")
@@ -8,7 +8,12 @@ const inputPhraseField = document.getElementById("input-phrase")
 
 async function submitCode(){
     try{
-        const data = await makeHTTPRequest("delete")
+        const id = getUserId()
+
+        const data = await makeHTTPRequest({
+            requestType: "DELETE",
+            requestURL: `users/${id}`
+        })
 
         alert("Successfully deleted your account");
         logOutUser()

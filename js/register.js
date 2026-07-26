@@ -26,14 +26,30 @@ async function createUser(event){
     }
 
     try{
-        const data = await makeHTTPRequest(
-            "create",
-            [emailField.value,
-            usernameField.value,
-            passwordField.value]
-        )
+        const userData = {
+            email: emailField.value,
+            username: usernameField.value,
+            password: passwordField.value
+        };
 
-        const loginData = await makeHTTPRequest("login", [emailField.value, passwordField.value])
+        const data = await makeHTTPRequest({
+            requestType: "POST",
+            requestBody: userData,
+            requestHeaders: {"Content-Type": "application/json"},
+            requestURL: "users"
+        })
+
+        const params = new URLSearchParams()
+        
+        params.append("username", emailField.value)
+        params.append("password", passwordField.value)
+        
+        const loginData = await makeHTTPRequest({
+            requestType: "POST",
+            requestBody: params,
+            requestHeaders: {"Content-Type": "application/x-www-form-urlencoded"},
+            requestURL: "auth/login"
+        })
 
         alert("Login successful");
 

@@ -8,7 +8,12 @@ const inputCodeField = document.getElementById("input-code")
 
 async function submitCode(){
     try{
-        const data = await makeHTTPRequest("code", [inputCodeField.value])
+        const data = await makeHTTPRequest({
+            requestType: "POST",
+            requestBody: {login_code: inputCodeField.value},
+            requestHeaders: {"Content-Type": "application/json"},
+            requestURL: "codes/verify"
+        })
 
         alert(`Successfully logged in on your ${data.os} in ${data.country}`);
     }catch (error){

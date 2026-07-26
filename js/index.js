@@ -13,7 +13,17 @@ async function loginUser(event){
     event.preventDefault();
 
     try{
-        const data = await makeHTTPRequest("login", [loginEmailField.value, loginPasswordField.value])
+        const params = new URLSearchParams()
+
+        params.append("username", loginEmailField.value)
+        params.append("password", loginPasswordField.value)
+        
+        const data = await makeHTTPRequest({
+            requestType: "POST",
+            requestBody: params,
+            requestHeaders: {"Content-Type": "application/x-www-form-urlencoded"},
+            requestURL: "auth/login"
+        })
 
         alert("Login successful");
 

@@ -2,17 +2,6 @@ import {getUserId, getSaveId, saveToLocalStorage, logOut} from "./localstorage.j
 
 const baseURL = "http://127.0.0.1:8000/api"
 
-const endpoints = {
-    login: login,
-    create: createUser,
-    code: verifyCode,
-    update: updateUser,
-    delete: deleteUser,
-    savedata: getSavedData,
-    leaderboard: getLeaderboardUser,
-    fallback: () => "No method found"
-}
-
 async function handleResponse(response){
     let data = {};
 
@@ -33,12 +22,33 @@ async function handleResponse(response){
     return data
 }
 
-export async function makeHTTPRequest(requestName, args = [], retry = false){
-    const request = endpoints[requestName] || endpoints.fallback
-    let response = await request(...args)
+export async function makeHTTPRequest(
+    {requestType = "",
+    requestBody = {},
+    requestHeaders = {},
+    requestURL = ""},
+    retry = false
+){
+    let options = {
+        method: requestType,
+        headers: requestHeaders,
+        body: requestBody,
+        credentials: "include"
+    }
+
+    if(requestType === "GET"){
+        options.body = undefined;
+    }else{
+        if(!requestURL.includes("login")){
+            console.log("strinigifying")
+            options.body = JSON.stringify(requestBody)
+        }
+    }
+
+    let response = await fetch(`${baseURL}/${requestURL}`, options)
 
     if(!response.ok){
-        if(response.status === 401 && requestName !== "login"){
+        if(response.status === 401 && !requestURL.includes("login")){
             if(retry){
                 logOut()
                 console.log("(401) Session expired");
@@ -47,7 +57,12 @@ export async function makeHTTPRequest(requestName, args = [], retry = false){
             const refreshSuccess = await getNewRefresh();
 
             if(refreshSuccess){
-                return await makeHTTPRequest(requestName, args, true);
+                return await makeHTTPRequest({
+                    requestType,
+                    requestBody,
+                    requestHeaders,
+                    requestURL
+                }, true);
             } else {
                 logOut()
                 console.log("(401) Refresh failed");
@@ -99,92 +114,4 @@ export async function getCurrentUser(){
     }catch (error){
         alert(`An error occurred: ${error.message}`);
     };
-}
-
-async function login(email, password) {
-    const formData = new URLSearchParams();
-
-    formData.append("username", email);
-    formData.append("password", password);
-
-    return fetch(`${baseURL}/auth/login`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: formData,
-        credentials: "include"
-    });
-}
-
-async function createUser(email, username, password) {
-    const userData = {
-        email: email,
-        username: username,
-        password: password
-    };
-
-    return fetch(`${baseURL}/users`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(userData)
-    })
-}
-
-async function verifyCode(code) {
-    const postData = {
-        login_code: code
-    }
-
-   return fetch(`${baseURL}/codes/verify`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData),
-        credentials: "include"
-    })
-}
-
-async function updateUser(username, email, password, currentPassword) {
-    const id = getUserId();
-
-    const userData = {
-        username: username || null,
-        email: email || null,
-        password: password || null,
-        current_password: currentPassword
-    }
-
-    return fetch(`${baseURL}/users/${id}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-        credentials: "include"
-    });
-}
-
-async function deleteUser(){
-    const id = getUserId();
-
-    return fetch(`${baseURL}/users/${id}`, {
-        method: "DELETE",
-        credentials: "include"
-    });
-}
-
-async function getSavedData(){
-    const save_id = getSaveId();
-
-    return fetch(`${baseURL}/saves/${save_id}`, {
-        method: "GET",
-    });
-}
-
-async function getLeaderboardUser(){
-    return fetch(`${baseURL}/saves/leaderboard`, {
-        method: "GET",
-    });
 }

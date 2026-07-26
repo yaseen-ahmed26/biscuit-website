@@ -5,7 +5,10 @@ const rows = document.querySelectorAll('.board .row');
 const actionBtn = document.getElementById("action-btn")
 
 async function displayLeaderboard(event){
-    const data = await makeHTTPRequest("leaderboard")
+    const data = await makeHTTPRequest({
+        requestType: "GET",
+        requestURL: `saves/leaderboard`
+    })
 
     data.forEach((e, i) => {
         const row = rows[i]
