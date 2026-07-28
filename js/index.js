@@ -1,4 +1,4 @@
-import { getCurrentUser,  makeHTTPRequest} from "./helpers/api.js";
+import { getCurrentUser,  makeHTTPRequest, getNewRefresh } from "./helpers/api.js";
 
 const actionBtn = document.getElementById("action-btn");
 const loginBtn = document.getElementById("login-btn")
@@ -45,8 +45,18 @@ function toggleShowPassword(event){
     }
 }
 
+async function automaticLogin(){
+    const success = await getNewRefresh();
+
+    if(success){
+        await getCurrentUser();
+    }
+}
+
 actionBtn.addEventListener("click", () => {
     window.location.replace("pages/register.html");
 });
 loginBtn.addEventListener("click", loginUser)
 showPasswordBtn.addEventListener("click", toggleShowPassword)
+
+automaticLogin()

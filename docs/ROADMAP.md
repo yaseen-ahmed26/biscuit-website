@@ -14,6 +14,7 @@ Rough roadmap of features I would like to implement and how I will.
 - [?] Unique toast notifications or models
 - [✓] Improved api.js structure and factoring for refresh tokens
 - [✓] Store access tokens in httponly cookie storage rather than localstorage
+- [✓] Automatic login
 
 No longer doing a connected sessions page. The project isn't deployed yet so the only way I can get the user's country is the language. Works fine for Godot game linking because it's short and quick but I would prefer to do it the professional way and use IP lookups from Render or similar for a security feature like sessions.
 

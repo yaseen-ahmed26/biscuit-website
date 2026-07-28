@@ -73,7 +73,7 @@ export async function makeHTTPRequest(
     return await handleResponse(response);
 }
 
-async function getNewRefresh(){
+export async function getNewRefresh(){
     try{
         const response = await fetch(`${baseURL}/auth/refresh`, {
             method: "POST",
