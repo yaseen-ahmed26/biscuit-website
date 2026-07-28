@@ -1,5 +1,5 @@
-import { makeHTTPRequest } from "./helpers/api.js";
-import { logOut, getSaveId } from "./helpers/localstorage.js";
+import { makeHTTPRequest, logOut } from "./helpers/api.js";
+import { getSaveId } from "./helpers/localstorage.js";
 
 const actionBtn = document.getElementById("action-btn");
 const refreshBtn = document.getElementById("refresh-btn")

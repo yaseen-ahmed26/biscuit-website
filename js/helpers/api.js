@@ -1,4 +1,4 @@
-import {getUserId, getSaveId, saveToLocalStorage, logOut} from "./localstorage.js"
+import {getUserId, getSaveId, saveToLocalStorage } from "./localstorage.js"
 
 const baseURL = "http://127.0.0.1:8000/api"
 
@@ -114,4 +114,18 @@ export async function getCurrentUser(){
     }catch (error){
         alert(`An error occurred: ${error.message}`);
     };
+}
+
+export async function logOut(){
+    const response = await fetch(`${baseURL}/auth/logout`, {
+        method: "POST",
+        credentials: "include"
+    });
+
+    if(response.ok){
+        alert("Logged out");
+
+        localStorage.clear();
+        window.location.replace("../../../index.html");
+    }
 }

@@ -1,5 +1,4 @@
-import { makeHTTPRequest } from "./helpers/api.js";
-import { logOut } from "./helpers/localstorage.js";
+import { makeHTTPRequest, logOut } from "./helpers/api.js";
 
 const rows = document.querySelectorAll('.board .row');
 const actionBtn = document.getElementById("action-btn")
