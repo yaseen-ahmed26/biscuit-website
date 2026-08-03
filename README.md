@@ -1,7 +1,9 @@
 # Biscuit Website
-This is the website of the 'Biscuit' Project.
+This is the website of the 'Biscuit' project.
 
-Development notes: [NOTES.md](NOTES.md). Includes sections on challenges solved, decsions made etc.
+Development Notes: [NOTES.md](docs/NOTES.md). Challenges solved, decisions made.
+
+Roadmap Notes: [ROADMAP.md](docs/ROADMAP.md). The current v2 plan.
 
 ---
 
@@ -11,35 +13,34 @@ Development notes: [NOTES.md](NOTES.md). Includes sections on challenges solved,
 ---
 
 ### Tech
-- **Language**: Vanilla JavaScript
+- **Language**: JavaScript
 
 - **Styling**: HTML/CSS
 
 ---
 
 ### About
-This is the website that allows you to create an account, link your account to the game and view game stats.
+The website includes:
 
-Features:
 - **Account Registration**
 
 - **Account Deletion**
 
-- **Account Updating**
+- **Account Management (updating emails/usernames/passwords)**
 
-- **Link Game to your Account**
+- **Link Game to Account**
 
 - **View Game Stats**
+
+- **Leaderboard for the top 5 players with most biscuits**
 
 ---
 
 ### Future Features
 
 Technical:
-- **Leaderboards**: Display top 10 users with the most game stats.
+- **Share Game Stats**
 
-- **Share Game Stats**: Generate a link for every user's game stats page that can be shared to other users.
+- **Web Components for repeated HTML**
 
-- **Connections Pages**: Display all logged in sessions including games that the user can disconnect at any time.
-
-- **Settings Pages**: Move account details and account deletion to one page.
+- **Custom Modal or Toast Notifications**
