@@ -1,6 +1,11 @@
 import {getUserId, getSaveId, saveToLocalStorage } from "./localstorage.js"
 
-const baseURL = "http://127.0.0.1:8000/api"
+const localBaseURL = "http://127.0.0.1:8000/api";
+const deployedBaseURL = "https://biscuit-server.onrender.com/api";
+
+const useLocal = false;
+
+let baseURL = useLocal ? localBaseURL : deployedBaseURL
 
 async function handleResponse(response){
     let data = {};
@@ -90,7 +95,7 @@ export async function getNewRefresh(){
 
 export async function getCurrentUser(){
     try{
-        const response = await fetch(baseURL + "/users/me", {
+        const response = await fetch(`${baseURL}/users/me`, {
             method: "GET",
             credentials: "include"
         });
