@@ -1,4 +1,5 @@
 import { getCurrentUser, makeHTTPRequest } from "./helpers/api.js";
+import { changeWindow } from "./helpers/window.js";
 
 const actionBtn = document.getElementById("action-btn");
 const registerBtn = document.getElementById("register-btn")
@@ -60,6 +61,6 @@ async function createUser(event){
 };
 
 actionBtn.addEventListener("click", () => {
-    window.location.replace("../index.html");
+   changeWindow("index.html")
 });
 registerBtn.addEventListener("click", createUser)

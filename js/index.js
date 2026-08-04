@@ -1,4 +1,5 @@
 import { getCurrentUser,  makeHTTPRequest, getNewRefresh } from "./helpers/api.js";
+import { changeWindow } from "./helpers/window.js";
 
 const actionBtn = document.getElementById("action-btn");
 const loginBtn = document.getElementById("login-btn")
@@ -54,7 +55,7 @@ async function automaticLogin(){
 }
 
 actionBtn.addEventListener("click", () => {
-    window.location.replace("pages/register.html");
+    changeWindow("register.html")
 });
 loginBtn.addEventListener("click", loginUser)
 showPasswordBtn.addEventListener("click", toggleShowPassword)

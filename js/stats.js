@@ -1,5 +1,6 @@
 import { makeHTTPRequest, logOut } from "./helpers/api.js";
 import { getSaveId } from "./helpers/localstorage.js";
+import { changeWindow } from "./helpers/window.js";
 
 const actionBtn = document.getElementById("action-btn");
 const refreshBtn = document.getElementById("refresh-btn")
@@ -25,7 +26,7 @@ function loadSaveData(){
 
     if(!userSave){
         alert("No save data found, create an account instead")
-        window.location.replace("../index.html");
+        changeWindow("index.html")
         return;
     };
 
@@ -45,8 +46,6 @@ async function updateSaveData(){
             requestType: "GET",
             requestURL: `saves/${save_id}`
         })
-
-        alert('Success');
 
         localStorage.setItem("user_save", JSON.stringify(data));
         

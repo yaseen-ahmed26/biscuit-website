@@ -1,4 +1,5 @@
-import {getUserId, getSaveId, saveToLocalStorage } from "./localstorage.js"
+import { getUserId, getSaveId, saveToLocalStorage } from "./localstorage.js"
+import { changeWindow } from "./window.js"
 
 const localBaseURL = "http://127.0.0.1:8000/api";
 const deployedBaseURL = "https://biscuit-server.onrender.com/api";
@@ -114,7 +115,7 @@ export async function getCurrentUser(){
             saveToLocalStorage("user_save", JSON.stringify(save))
         }
 
-        window.location.replace("../../pages/account.html");
+        changeWindow("account.html")
     
     }catch (error){
         alert(`An error occurred: ${error.message}`);
@@ -131,6 +132,6 @@ export async function logOut(){
         alert("Logged out");
 
         localStorage.clear();
-        window.location.replace("../../../index.html");
+        changeWindow("index.html")
     }
 }

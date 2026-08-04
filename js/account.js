@@ -1,5 +1,6 @@
 import { makeHTTPRequest, logOut } from "./helpers/api.js"
 import { getUserId } from "./helpers/localstorage.js";
+import { changeWindow } from "./helpers/window.js";
 
 const actionBtn = document.getElementById("action-btn")
 const updateBtn = document.getElementById("update-btn")
@@ -17,7 +18,7 @@ function loadUserData(){
 
     if(!userData){
         alert("No save data found, create an account instead")
-        window.location.replace("../index.html");
+        changeWindow("index.html")
         return;
     };
 
