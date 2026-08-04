@@ -28,12 +28,18 @@ async function checkCorrectPhrase(){
     if(phrase !== "delete my account"){
         submitBtn.textContent = "Enter Phrase"
         submitBtn.disabled = true
+        submitBtn.style.color = "grey"
+        submitBtn.style.cursor = "auto"
     }else{
         submitBtn.textContent = "Delete"
         submitBtn.disabled = false
+        submitBtn.style.color = "white"
+        submitBtn.style.cursor = "pointer"
     }
 }
 
 actionBtn.addEventListener("click", logOut);
 submitBtn.addEventListener("click", submitCode);
-inputPhraseField.addEventListener("change", checkCorrectPhrase)
+inputPhraseField.addEventListener("input", checkCorrectPhrase)
+
+checkCorrectPhrase()
