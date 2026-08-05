@@ -26,8 +26,6 @@ async function loginUser(event){
             requestURL: "auth/login"
         })
 
-        alert("Login successful");
-
         await getCurrentUser();
     }catch (error) {
         alert(`${error.message}`);

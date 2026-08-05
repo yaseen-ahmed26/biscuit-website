@@ -25,7 +25,6 @@ function loadSaveData(){
     const userSave = localStorage.getItem("user_save");
 
     if(!userSave){
-        alert("No save data found, create an account instead")
         changeWindow("index.html")
         return;
     };

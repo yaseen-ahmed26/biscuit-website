@@ -46,8 +46,6 @@ async function updateUserData(){
             requestURL: `users/${id}`
         })
 
-        alert('Success');
-
         localStorage.setItem("user_data", JSON.stringify(data));
         
         loadUserData()

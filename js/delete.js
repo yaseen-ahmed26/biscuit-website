@@ -15,7 +15,6 @@ async function submitCode(){
             requestURL: `users/${id}`
         })
 
-        alert("Successfully deleted your account");
         logOut()
     }catch (error){
         alert(`An error occurred: ${error.message}`)

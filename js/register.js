@@ -17,12 +17,10 @@ async function createUser(event){
         usernameField.value == "" ||
         passwordField.value == ""
     ){
-        alert("Missing fields")
         return;
     }
 
     if(passwordField.value !== confirmPasswordField.value){
-        alert("Passwords do not match")
         return;
     }
 
@@ -51,8 +49,6 @@ async function createUser(event){
             requestHeaders: {"Content-Type": "application/x-www-form-urlencoded"},
             requestURL: "auth/login"
         })
-
-        alert("Login successful");
 
         await getCurrentUser();
     }catch (error){
