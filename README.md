@@ -1,9 +1,17 @@
 # Biscuit Website
 This is the website of the 'Biscuit' project.
 
-Development Notes: [NOTES.md](docs/NOTES.md). Challenges solved, decisions made.
+> **Live Demo:** [https://yaseen-ahmed26.github.io/biscuit-website/](https://yaseen-ahmed26.github.io/biscuit-website/)
+> 
+> Note that you do not need to use a real email, `test@test.com` or similar works.
+> Also note that due to server being hosted with Render's free tier, requests may take 10-20s to occur.
 
-Roadmap Notes: [ROADMAP.md](docs/ROADMAP.md). The current v2 plan.
+---
+
+### Docs
+- **Development Notes**: [NOTES.md](docs/NOTES.md). Challenges solved, decisions made.
+
+- **Roadmap Notes**: [ROADMAP.md](docs/ROADMAP.md). The current v2 plan.
 
 ---
 
