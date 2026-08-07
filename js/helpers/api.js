@@ -4,7 +4,7 @@ import { changeWindow } from "./window.js"
 const localBaseURL = "http://127.0.0.1:8000/api";
 const deployedBaseURL = "https://biscuit-server.onrender.com/api";
 
-const useLocal = false;
+const useLocal = true;
 
 let baseURL = useLocal ? localBaseURL : deployedBaseURL
 

@@ -1,4 +1,4 @@
-const useLocal = false;
+const useLocal = true;
 
 const baseURL = useLocal
     ? "http://127.0.0.1:5500"

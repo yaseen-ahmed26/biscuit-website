@@ -39,10 +39,6 @@ Ideas
 - ~~Could also hide link game page once linked.~~
     - This defeats the purpose of online saving, if you want to cross progress.
 
-[ ] **Web components**
-- Reduce duplication with HTML structure with web componets.
-- Start off with navigation bar, one layout.js file.
-
 ---
 
 QoL
@@ -67,3 +63,7 @@ Completed
 - Should only be 1 leaderboard for now, with support for query paramaters for different types.
     - For now, simply display lifetime biscuits and the top 5.
 - Can have it auto update, every 1 minute.
+
+[✓] **Web components**
+- Reduce duplication with HTML structure with web componets.
+- Start off with navigation bar, one layout.js file.
