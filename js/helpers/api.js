@@ -1,12 +1,12 @@
 import { getUserId, getSaveId, saveToLocalStorage } from "./localstorage.js"
 import { changeWindow } from "./window.js"
 
-const localBaseURL = "http://127.0.0.1:8000/api";
-const deployedBaseURL = "https://biscuit-server.onrender.com/api";
+const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const baseURL = isLocal
+    ? "http://127.0.0.1:8000/api"
+    : "https://biscuit-server.onrender.com/api";
 
-const useLocal = true;
-
-let baseURL = useLocal ? localBaseURL : deployedBaseURL
+console.log(`API base URL is ${baseURL}`)
 
 async function handleResponse(response){
     let data = {};
