@@ -11,7 +11,7 @@ This is the website of the 'Biscuit' project.
 ### Docs
 - **Development Notes**: [NOTES.md](docs/NOTES.md). Challenges solved, decisions made.
 
-- **Roadmap Notes**: [ROADMAP.md](docs/ROADMAP.md). The current v2 plan.
+- **Idea Notes**: [IDEAS.md](docs/IDEAS.md). The current v2 plan.
 
 ---
 
