@@ -1,5 +1,5 @@
 import { getCurrentUser,  makeHTTPRequest, getNewRefresh } from "./helpers/api.js";
-import { changeWindow } from "./helpers/window.js";
+import { changeWindow, showToast } from "./helpers/window.js";
 
 const loginBtn = document.getElementById("login-btn")
 const showPasswordBtn = document.getElementById("show-password")
@@ -11,6 +11,18 @@ const loginPasswordField = document.getElementById("login-password")
 
 async function loginUser(event){
     event.preventDefault();
+
+    if(loginEmailField.value === ""){
+        showToast("Email is required")
+
+        return;
+    }
+
+    if(loginPasswordField.value === ""){
+        showToast("Password is required")
+
+        return;
+    }
 
     try{
         const params = new URLSearchParams()
@@ -26,7 +38,7 @@ async function loginUser(event){
         })
 
         await getCurrentUser();
-    }catch (error) {
+    }catch (error){
         alert(`${error.message}`);
     };
 };
