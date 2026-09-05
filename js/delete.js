@@ -1,5 +1,6 @@
 import { makeHTTPRequest, logOut } from "./helpers/api.js"
 import { getUserId } from "./helpers/localstorage.js";
+import { showToast } from "./helpers/window.js";
 
 const actionBtn = document.getElementById("action-btn")
 const submitBtn = document.getElementById("submit-btn")
@@ -17,7 +18,7 @@ async function submitCode(){
 
         logOut()
     }catch (error){
-        alert(`An error occurred: ${error.message}`)
+        showToast(`${error.message}`)
     }
 }
 

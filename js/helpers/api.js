@@ -1,5 +1,5 @@
 import { getUserId, getSaveId, saveToLocalStorage } from "./localstorage.js"
-import { changeWindow } from "./window.js"
+import { changeWindow, showToast } from "./window.js"
 
 const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 const baseURL = isLocal
@@ -102,7 +102,7 @@ export async function getCurrentUser(){
         });
         
         if(!response.ok){
-            alert("Failed to fetch user data");
+            showToast("An error occurred getting saved data");
             return;
         }
 
@@ -118,7 +118,7 @@ export async function getCurrentUser(){
         changeWindow("account.html")
     
     }catch (error){
-        alert(`An error occurred: ${error.message}`);
+        showToast(`${error.message}`);
     };
 }
 
@@ -129,9 +129,9 @@ export async function logOut(){
     });
 
     if(response.ok){
-        alert("Logged out");
-
         localStorage.clear();
         changeWindow("index.html")
+
+        showToast("Successfully logged out");
     }
 }

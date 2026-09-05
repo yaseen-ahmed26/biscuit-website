@@ -27,12 +27,6 @@ Ideas
 
 [?] **Connections, display connect accounts and their device/country**
 
-[ ] **Unique modals to replace native alert**
-- Custom modal popup similar to Godot.
-- This can either be a modal or toast notifications.
-    - Modals match Godot, so more cross flow friendly.
-    - However toast notifications are easier and less intrusive. Since the user probably won't spend much time on the website, forcing them to click 'okay' every few seconds would be annoying.
-
 [ ] **Hide leaderboards if not linked**
 - Don't show leaderboards and game stats page if the user hasn't connected their account. 
 - Database would need a is_linked, which JavaScript can use to hide.
@@ -53,6 +47,8 @@ QoL
 [ ] **Clear password fields when they do not match when registering**
 - Add to register.js.
 
+[ ] **Grey out update button on account details if password hasn't been inputted**
+
 ---
 
 Completed
@@ -67,3 +63,9 @@ Completed
 [✓] **Web components**
 - Reduce duplication with HTML structure with web componets.
 - Start off with navigation bar, one layout.js file.
+
+[✓] **Unique modals to replace native alert**
+- Custom modal popup similar to Godot.
+- This can either be a modal or toast notifications.
+    - Modals match Godot, so more cross flow friendly.
+    - However toast notifications are easier and less intrusive. Since the user probably won't spend much time on the website, forcing them to click 'okay' every few seconds would be annoying.

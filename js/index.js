@@ -39,7 +39,7 @@ async function loginUser(event){
 
         await getCurrentUser();
     }catch (error){
-        alert(`${error.message}`);
+        showToast(`${error.message}`)
     };
 };
 

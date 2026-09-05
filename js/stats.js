@@ -1,6 +1,6 @@
 import { makeHTTPRequest, logOut } from "./helpers/api.js";
 import { getSaveId } from "./helpers/localstorage.js";
-import { changeWindow } from "./helpers/window.js";
+import { changeWindow, showToast } from "./helpers/window.js";
 
 const actionBtn = document.getElementById("action-btn");
 const refreshBtn = document.getElementById("refresh-btn")
@@ -25,7 +25,7 @@ function loadSaveData(){
     const userSave = localStorage.getItem("user_save");
 
     if(!userSave){
-        changeWindow("index.html")
+        changeWindow("account.html")
         return;
     };
 
@@ -50,7 +50,7 @@ async function updateSaveData(){
         
         loadSaveData()
     }catch (error){
-        alert(`${error.message}`)
+        showToast(`${error.message}`)
     }
 }
 

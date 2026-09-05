@@ -1,5 +1,5 @@
 import { getCurrentUser, makeHTTPRequest } from "./helpers/api.js";
-import { changeWindow } from "./helpers/window.js";
+import { changeWindow, showToast } from "./helpers/window.js";
 
 const registerBtn = document.getElementById("register-btn")
 
@@ -16,10 +16,12 @@ async function createUser(event){
         usernameField.value == "" ||
         passwordField.value == ""
     ){
+        showToast("You must complete all fields")
         return;
     }
 
     if(passwordField.value !== confirmPasswordField.value){
+        showToast("Passwords do not match")
         return;
     }
 
@@ -51,7 +53,7 @@ async function createUser(event){
 
         await getCurrentUser();
     }catch (error){
-        alert(`${error.message}`)
+        showToast(`${error.message}`)
     }
 };
 

@@ -1,6 +1,6 @@
 import { makeHTTPRequest, logOut } from "./helpers/api.js"
 import { getUserId } from "./helpers/localstorage.js";
-import { changeWindow } from "./helpers/window.js";
+import { changeWindow, showToast } from "./helpers/window.js";
 
 const actionBtn = document.getElementById("action-btn")
 const updateBtn = document.getElementById("update-btn")
@@ -17,7 +17,7 @@ function loadUserData(){
     const userData = localStorage.getItem("user_data");
 
     if(!userData){
-        alert("No save data found, create an account instead")
+        showToast("No save data found, create an account instead")
         changeWindow("index.html")
         return;
     };
@@ -49,12 +49,13 @@ async function updateUserData(){
         localStorage.setItem("user_data", JSON.stringify(data));
         
         loadUserData()
+        showToast("Account details successfully updated")
 
         updateEmailField.value = ""
         updateUsernameField.value = ""
         updatePasswordField.value = ""
     }catch (error){
-        alert(`${error.message}`)
+        showToast(`${error.message}`)
     }
 }
 
