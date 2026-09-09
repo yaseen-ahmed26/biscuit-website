@@ -3,28 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stats</title>
+    <title>Game</title>
     <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/leaderboard.css">
     <script src="../js/components/navigation.js" defer></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
 </head>
 <body>
     <navigation-bar></navigation-bar>
 
-    <div class="wrapper">
-        <div class="card">
-            <h2>Game Stats</h2>
-            <p id="description">View your lifetime game stats.</p>
-            <div class="display-box">
-                <p id="lifetime-biscuits">Lifetime Biscuits: 1000</p>
+    <div class="main">
+        <div class="wrapper">
+            <div class="card">
+                <h2>Leaderboard</h2>
+                <p id="description">View the top 5 users with the most lifetime biscuits</p>
+                <h3>PLAYER BISCUITS</h3>
+
+                <div class="board">
+                    <div class="row">
+                        <span class="rank">#1</span>
+                        <span class="player">--</span>
+                        <span class="total">--</span>
+                    </div>
+                    <div class="row">
+                        <span class="rank">#2</span>
+                        <span class="player">--</span>
+                        <span class="total">--</span>
+                    </div>
+                    <div class="row">
+                        <span class="rank">#3</span>
+                        <span class="player">--</span>
+                        <span class="total">--</span>
+                    </div>
+                    <div class="row">
+                        <span class="rank">#4</span>
+                        <span class="player">--</span>
+                        <span class="total">--</span>
+                    </div>
+                    <div class="row">
+                        <span class="rank">#5</span>
+                        <span class="player">--</span>
+                        <span class="total">--</span>
+                    </div>
+                </div>
             </div>
-            <div class="display-box">
-                <p id="lifetime-playtime">Lifetime Playtime: 5000</p>
+        </div>
+
+        <div class="wrapper">
+            <div class="card">
+                <h2>Game Stats</h2>
+                <p id="description">View your lifetime game stats.</p>
+                <div class="display-box">
+                    <p id="lifetime-biscuits">Lifetime Biscuits: 1000</p>
+                </div>
+                <div class="display-box">
+                    <p id="lifetime-playtime">Lifetime Playtime: 5000</p>
+                </div>
+                <div class="display-box">
+                    <p id="lifetime-clicks">Lifetime Clicks: 100</p>
+                </div>
+                <button class="final-btn" id="refresh-btn">Refresh</button>
             </div>
-            <div class="display-box">
-                <p id="lifetime-clicks">Lifetime Clicks: 100</p>
-            </div>
-            <button class="final-btn" id="refresh-btn">Refresh</button>
         </div>
     </div>
 

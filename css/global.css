@@ -60,6 +60,12 @@ header{
     transform: scaleX(1);
 }
 
+.main{
+    display: flex;
+    flex-direction: row;
+    gap: 50px
+}
+
 .wrapper{
     position: relative;
     width: 520px;
