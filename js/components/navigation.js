@@ -5,6 +5,7 @@ class NavigationBar extends HTMLElement{
     <header>
         <h2 class="logo">Biscuit</h2>
         <nav class="navigation">
+            <a href="../index.html">Home</a>
             <a href="stats.html">Game Stats</a>
             <a href="code.html">Link Game</a>
             <a href="account.html">Account Details</a>
@@ -20,6 +21,9 @@ class NavigationBar extends HTMLElement{
 class SecondNavigationBar extends HTMLElement{
 
   connectedCallback(){
+    const isLoggedIn = localStorage.getItem("user_data")
+    const text = isLoggedIn !== null ? "Account" : "Login"
+
     this.innerHTML = `
     
       <header>
@@ -27,7 +31,7 @@ class SecondNavigationBar extends HTMLElement{
         <nav class="navigation">
           <a href="../index.html">Home</a>
           <a href="../pages/register.html">Register</a>
-          <a href="../pages/login.html">Login</a>
+          <a href="../pages/login.html">${text}</a>
         </nav>
       </header>
 
