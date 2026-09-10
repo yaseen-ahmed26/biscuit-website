@@ -23,6 +23,7 @@ class SecondNavigationBar extends HTMLElement{
   connectedCallback(){
     const isLoggedIn = localStorage.getItem("user_data")
     const text = isLoggedIn !== null ? "Account" : "Login"
+    const registerText = isLoggedIn !== null ? "hidden" : ""
 
     this.innerHTML = `
     
@@ -30,7 +31,7 @@ class SecondNavigationBar extends HTMLElement{
         <h2 class="logo">Biscuit</h2>
         <nav class="navigation">
           <a href="../index.html">Home</a>
-          <a href="../pages/register.html">Register</a>
+          <a href="../pages/register.html" ${registerText}>Register</a>
           <a href="../pages/login.html">${text}</a>
         </nav>
       </header>
