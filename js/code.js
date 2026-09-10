@@ -21,5 +21,25 @@ async function submitCode(){
     }
 }
 
+function checkCode(){
+    inputCodeField.value = inputCodeField.value.toUpperCase().trim()
+    
+    if(inputCodeField.value.length !== 7){
+        submitBtn.textContent = "Enter Code"
+        submitBtn.disabled = true
+        submitBtn.style.color = "grey"
+        submitBtn.style.cursor = "auto"
+    }else{
+        submitBtn.textContent = "Link"
+        submitBtn.disabled = false
+        submitBtn.style.color = "white"
+        submitBtn.style.cursor = "pointer"
+    }
+}
+
 actionBtn.addEventListener("click", logOut);
 submitBtn.addEventListener("click", submitCode)
+inputCodeField.addEventListener("input", checkCode)
+
+checkCode()
+inputCodeField.focus()
