@@ -5,7 +5,7 @@ class NavigationBar extends HTMLElement{
     <header>
         <h2 class="logo">Biscuit</h2>
         <nav class="navigation">
-            <a href="../index.html">Home</a>
+            <a href="./index.html">Home</a>
             <a href="stats.html">Game Stats</a>
             <a href="code.html">Link Game</a>
             <a href="account.html">Account Details</a>
@@ -30,9 +30,9 @@ class SecondNavigationBar extends HTMLElement{
       <header>
         <h2 class="logo">Biscuit</h2>
         <nav class="navigation">
-          <a href="../index.html">Home</a>
-          <a href="../pages/register.html" ${registerText}>Register</a>
-          <a href="../pages/login.html">${text}</a>
+          <a href="./index.html">Home</a>
+          <a href="/pages/register.html" ${registerText}>Register</a>
+          <a href="/pages/login.html">${text}</a>
         </nav>
       </header>
 
