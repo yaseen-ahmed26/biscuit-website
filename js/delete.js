@@ -42,4 +42,6 @@ actionBtn.addEventListener("click", logOut);
 submitBtn.addEventListener("click", submitCode);
 inputPhraseField.addEventListener("input", checkCorrectPhrase)
 
+inputPhraseField.focus()
+
 checkCorrectPhrase()

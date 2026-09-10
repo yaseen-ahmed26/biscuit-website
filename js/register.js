@@ -58,3 +58,5 @@ async function createUser(event){
 };
 
 registerBtn.addEventListener("click", createUser)
+
+usernameField.focus()

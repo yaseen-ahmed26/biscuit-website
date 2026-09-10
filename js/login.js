@@ -66,4 +66,6 @@ async function automaticLogin(){
 loginBtn.addEventListener("click", loginUser)
 showPasswordBtn.addEventListener("click", toggleShowPassword)
 
+loginEmailField.focus()
+
 automaticLogin()
