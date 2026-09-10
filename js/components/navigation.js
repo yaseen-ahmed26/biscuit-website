@@ -25,14 +25,18 @@ class SecondNavigationBar extends HTMLElement{
     const text = isLoggedIn !== null ? "Account" : "Login"
     const registerText = isLoggedIn !== null ? "hidden" : ""
 
+    const isInPagesDir = window.location.pathname.includes("/pages/");
+    const homePath = isInPagesDir ? "../index.html" : "./index.html";
+    const pagesPath = isInPagesDir ? "./" : "./pages/";
+
     this.innerHTML = `
     
       <header>
         <h2 class="logo">Biscuit</h2>
         <nav class="navigation">
-          <a href="/index.html">Home</a>
-          <a href="/pages/register.html" ${registerText}>Register</a>
-          <a href="/pages/login.html">${text}</a>
+          <a href="${homePath}">Home</a>
+          <a href="${pagesPath}register.html" ${registerText}>Register</a>
+          <a href="${pagesPath}login.html">${text}</a>
         </nav>
       </header>
 
