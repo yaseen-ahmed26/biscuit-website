@@ -69,3 +69,6 @@ Completed
 - This can either be a modal or toast notifications.
     - Modals match Godot, so more cross flow friendly.
     - However toast notifications are easier and less intrusive. Since the user probably won't spend much time on the website, forcing them to click 'okay' every few seconds would be annoying.
+
+[✓] **Index Page Revamp**
+- Change the landing page to a proper project overview, update log etc. Rather than the login screen.
