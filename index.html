@@ -23,7 +23,7 @@
 
         <section class="section-card">
             <div class="card-content-flex">
-                <img class="portrait-img" src="images/landing_image.png" alt="Image of the Biscuit Gamez">
+                <img class="portrait-img" src="media/landing_image.png" alt="Image of the Biscuit Gamez">
         
                 <div class="text-container">
                     <h1>Welcome to Biscuit!</h1>
@@ -38,26 +38,31 @@
 
         <section class="section-card">
             <h2>Update Logs</h2>
-            <div class="faq-container">
-                <details>
-                <summary>Version 2.0</summary>
-                <hr>
-                <p>
-                    <br>
-                    <b>Website</b><br>
-                    • Updated page descriptions<br>
-                    • Replaced native alerts with Toastify notifications<br>
-                    • Replaced actions buttons on the login/register pages with hyperlinks<br>
-                    • Replaced home page with this one (previously it was the login page)<br>
-                    • Combined leaderboard and game stats pages<br>
-                    <br>
-                    <b>Game</b><br>
-                    • Added boosts<br>
-                    • Added an update log in the game. The game update log displays exclusively game changes. The website displays all changes made across the project.<br>
-                    • Moved from JSON to native Resources for upgrades<br>
-                    • Fixed edge case where tabbing out caused account linking to fail.<br>
-                    • Move from using Save IDs to access and refresh tokens for HTTP requests<br>
-                </p>
+            <div class="update-container">
+                <details class="version-card">
+                    <summary>Version 2.0</summary>
+
+                    <strong>Major Changes & Fixes</strong>
+                    <ul>
+                        <li>(Game) Moved from a JSON file to native Godot Resources for upgrades</li>
+                        <li>(Game) Fixed edge case where tabbing out caused account linking to fail.</li>
+                        <li>(Game) Move from using Save IDs to access and refresh tokens for HTTP requests</li>
+                        <br>
+                        <li>(Website) Replaced the home page with this one (previously it was the login page)</li>
+                    </ul>
+                    
+                    <strong>Website</strong>
+                    <ul>
+                        <li>Replaced native alerts with Toastify notifications</li>
+                        <li>Replaced actions buttons on the login/register pages with hyperlinks</li>
+                        <li>Combined leaderboard and game stats pages</li>
+                    </ul>
+
+                    <strong>Game</strong>
+                    <ul>
+                        <li>Added boosts</li>
+                        <li>Added an update log in the game. The game update log displays exclusively game changes. The website displays all changes made across the project.</li>
+                    </ul>
                 </details>
             </div>
         </section>
