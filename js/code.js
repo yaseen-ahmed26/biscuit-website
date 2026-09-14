@@ -21,9 +21,7 @@ async function submitCode(){
     }
 }
 
-function checkCode(){
-    inputCodeField.value = inputCodeField.value.toUpperCase().trim()
-    
+function checkCode(){    
     if(inputCodeField.value.length !== 7){
         submitBtn.textContent = "Enter Code"
         submitBtn.disabled = true
