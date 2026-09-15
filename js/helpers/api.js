@@ -46,7 +46,6 @@ export async function makeHTTPRequest(
         options.body = undefined;
     }else{
         if(!requestURL.includes("login")){
-            console.log("strinigifying")
             options.body = JSON.stringify(requestBody)
         }
     }

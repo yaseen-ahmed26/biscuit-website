@@ -9,8 +9,6 @@ const biscuitsLabel = document.getElementById("lifetime-biscuits")
 const playtimeLabel = document.getElementById("lifetime-playtime")
 const clicksLabel = document.getElementById("lifetime-clicks")
 
-const rows = document.querySelectorAll('.board .row');
-
 function formatPlaytime(totalSeconds){
     let hours = Math.floor(totalSeconds / 3600);
     let minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -56,24 +54,7 @@ async function updateSaveData(){
     }
 }
 
-async function displayLeaderboard(event){
-    const data = await makeHTTPRequest({
-        requestType: "GET",
-        requestURL: `saves/leaderboard`
-    })
-
-    data.forEach((e, i) => {
-        const row = rows[i]
-        const playerSpan = row.querySelector('.player');
-        const totalSpan = row.querySelector('.total');
-
-        playerSpan.textContent = `${e.username}`;
-        totalSpan.textContent = `${e.total_biscuits}`;
-    })
-}
-
 actionBtn.addEventListener("click", logOut);
 refreshBtn.addEventListener("click", updateSaveData);
 
 loadSaveData();
-await displayLeaderboard()
