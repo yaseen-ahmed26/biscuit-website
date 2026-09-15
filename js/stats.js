@@ -1,9 +1,10 @@
 import { makeHTTPRequest, logOut } from "./helpers/api.js";
 import { getSaveId } from "./helpers/localstorage.js";
-import { changeWindow, showToast } from "./helpers/window.js";
+import { changeWindow, showToast, getUrl } from "./helpers/window.js";
 
 const actionBtn = document.getElementById("action-btn");
 const refreshBtn = document.getElementById("refresh-btn")
+const shareBtn = document.getElementById("share-btn")
 
 const biscuitsLabel = document.getElementById("lifetime-biscuits")
 const playtimeLabel = document.getElementById("lifetime-playtime")
@@ -54,7 +55,21 @@ async function updateSaveData(){
     }
 }
 
+async function copyShareLink(){
+    showToast("Copied link to clipboard!")
+
+    let link = `${getUrl()}/pages/share.html?id=${getSaveId()}`
+
+    const type = "text/plain";
+    const clipboardItemData = {
+        [type]: link,
+    };
+    const clipboardItem = new ClipboardItem(clipboardItemData);
+    await navigator.clipboard.write([clipboardItem]);
+}
+
 actionBtn.addEventListener("click", logOut);
 refreshBtn.addEventListener("click", updateSaveData);
+shareBtn.addEventListener("click", copyShareLink)
 
 loadSaveData();

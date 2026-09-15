@@ -35,3 +35,7 @@ export function showToast(text){
         }
     }).showToast();
 }
+
+export function getUrl(){
+    return baseURL
+}
