@@ -5,12 +5,24 @@ class NavigationBar extends HTMLElement{
     <header>
         <h2 class="logo">Biscuit</h2>
         <nav class="navigation">
-            <a href="../index.html">Home</a>
-            <a href="stats.html">Game Stats</a>
-            <a href="code.html">Link Game</a>
-            <a href="account.html">Account Details</a>
-            <a href="delete.html">Delete Account</a>
-            <button class="action-btn" id="action-btn">Log out</button>
+          <a href="../index.html">Home</a>
+          <div class="dropdown">
+            <button class="dropbtn">Game</button>
+            <div class="dropdown-content">
+              <a href="stats.html">Stats</a>
+              <a href="code.html">Link</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Account</button>
+            <div class="dropdown-content">
+              <a href="account.html">Details</a>
+              <a href="delete.html">Delete</a>
+            </div>
+          </div>
+
+          <button class="action-btn" id="action-btn">Log out</button>
         </nav>
     </header>
 

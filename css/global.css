@@ -207,3 +207,38 @@ header{
 #info a {
     color: #00a2ff;
 }
+
+.dropdown{
+    display: inline-block;
+    position: relative;
+}
+
+.dropbtn{
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    border: 1px solid #5f5f5f;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin-left: 3.2rem;
+}
+
+.dropdown-content a{
+    margin: 0;
+    padding: 0.8rem 1rem;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
