@@ -11,6 +11,7 @@ class NavigationBar extends HTMLElement{
             <div class="dropdown-content">
               <a href="stats.html">Stats</a>
               <a href="code.html">Link</a>
+              <a href="leaderboard.html">Leaderboard</a>
             </div>
           </div>
 

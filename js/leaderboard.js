@@ -1,0 +1,43 @@
+import { makeHTTPRequest, logOut } from "./helpers/api.js";
+import { getSaveId } from "./helpers/localstorage.js";
+import { changeWindow, showToast } from "./helpers/window.js";
+
+const actionBtn = document.getElementById("action-btn");
+
+const biscuitsLabel = document.getElementById("lifetime-biscuits")
+const playtimeLabel = document.getElementById("lifetime-playtime")
+const clicksLabel = document.getElementById("lifetime-clicks")
+
+const rows = document.querySelectorAll('.board .row');
+
+function formatPlaytime(totalSeconds){
+    let hours = Math.floor(totalSeconds / 3600);
+    let minutes = Math.floor((totalSeconds % 3600) / 60);
+    let seconds = Math.floor(totalSeconds % 60);
+
+    let paddedHours = String(hours).padStart(2, "0");
+    let paddedMinutes = String(minutes).padStart(2, "0");
+    let paddedSeconds = String(seconds).padStart(2, "0");
+
+    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+}
+
+async function displayLeaderboard(event){
+    const data = await makeHTTPRequest({
+        requestType: "GET",
+        requestURL: `saves/leaderboard`
+    })
+
+    data.forEach((e, i) => {
+        const row = rows[i]
+        const playerSpan = row.querySelector('.player');
+        const totalSpan = row.querySelector('.total');
+
+        playerSpan.textContent = `${e.username}`;
+        totalSpan.textContent = `${e.total_biscuits}`;
+    })
+}
+
+actionBtn.addEventListener("click", logOut);
+
+await displayLeaderboard()
