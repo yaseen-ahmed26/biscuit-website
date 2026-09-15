@@ -45,7 +45,7 @@ async function updateSaveData(){
 
         const data = await makeHTTPRequest({
             requestType: "GET",
-            requestURL: `saves/${save_id}`
+            requestURL: `saves/me`
         })
 
         localStorage.setItem("user_save", JSON.stringify(data));
