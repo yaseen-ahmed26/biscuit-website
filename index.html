@@ -23,7 +23,7 @@
 
         <section class="section-card">
             <div class="card-content-flex">
-                <img class="portrait-img" src="media/landing_image.png" alt="Image of the Biscuit Gamez">
+                <img class="portrait-img" src="media/landing_image.png" alt="Image of the Biscuit Game">
         
                 <div class="text-container">
                     <h1>Welcome to Biscuit!</h1>
@@ -45,7 +45,7 @@
                     <strong>Major Changes & Fixes</strong>
                     <ul>
                         <li>(Game) Moved from a JSON file to native Godot Resources for upgrades</li>
-                        <li>(Game) Fixed edge case where tabbing out caused account linking to fail.</li>
+                        <li>(Game) Fixed a bug where tabbing out caused account linking to fail.</li>
                         <li>(Game) Move from using Save IDs to access and refresh tokens for HTTP requests</li>
                         <br>
                         <li>(Website) Replaced the home page with this one (previously it was the login page)</li>
@@ -62,6 +62,30 @@
                     <ul>
                         <li>Added boosts</li>
                         <li>Added an update log in the game. The game update log displays exclusively game changes. The website displays all changes made across the project.</li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="update-container">
+                <details class="version-card">
+                    <summary>Version 2.1</summary>
+
+                    <strong>Major Changes & Fixes</strong>
+                    <ul>
+                        <li>(Website) Added shareable game stats page.</li>
+                        <br>
+                        <li>(Server) Server side light anti cheat. It calculates the max theoretical amount of biscuits a person can earn to prevent cheating.</li>
+                    </ul>
+                    
+                    <strong>Website</strong>
+                    <ul>
+                        <li>Converted navigation bar options to dropdown menus</li>
+                    </ul>
+
+                    <strong>Game</strong>
+                    <ul>
+                        <li>Moved from a dictionary to native Godot Resources for modals.</li>
+                        <li>Fixed a bug where the welcome bonus popup would akways show when connecting an account. Now only happens the first time an account is connected.</li>
                     </ul>
                 </details>
             </div>
