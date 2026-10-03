@@ -68,4 +68,4 @@ showPasswordBtn.addEventListener("click", toggleShowPassword)
 
 loginEmailField.focus()
 
-automaticLogin()
+// automaticLogin()

@@ -18,7 +18,7 @@ function loadUserData(){
 
     if(!userData){
         showToast("No save data found, create an account instead")
-        changeWindow("index.html")
+        // changeWindow("index.html")
         return;
     };
 

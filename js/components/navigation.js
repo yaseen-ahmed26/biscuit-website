@@ -34,26 +34,34 @@ class NavigationBar extends HTMLElement{
 class SecondNavigationBar extends HTMLElement{
 
   connectedCallback(){
-    const isLoggedIn = localStorage.getItem("user_data")
-    const text = isLoggedIn !== null ? "Account" : "Login"
-    const registerText = isLoggedIn !== null ? "hidden" : ""
-
-    const isInPagesDir = window.location.pathname.includes("/pages/");
-    const homePath = isInPagesDir ? "../index.html" : "./index.html";
-    const pagesPath = isInPagesDir ? "./" : "./pages/";
-
     this.innerHTML = `
-    
-      <header>
+      
+    <header>
         <h2 class="logo">Biscuit</h2>
         <nav class="navigation">
-          <a href="${homePath}">Home</a>
-          <a href="${pagesPath}register.html" ${registerText}>Register</a>
-          <a href="${pagesPath}login.html">${text}</a>
-        </nav>
-      </header>
+          <a href="../index.html">Home</a>
+          <div class="dropdown">
+            <button class="dropbtn">Game</button>
+            <div class="dropdown-content">
+              <a href="./pages/stats.html">Stats</a>
+              <a href="./pages/code.html">Link</a>
+              <a href="./pages/leaderboard.html">Leaderboard</a>
+            </div>
+          </div>
 
-      `;
+          <div class="dropdown">
+            <button class="dropbtn">Account</button>
+            <div class="dropdown-content">
+              <a href="./pages/account.html">Details</a>
+              <a href="./pages/delete.html">Delete</a>
+            </div>
+          </div>
+
+          <button class="action-btn" id="action-btn">Log out</button>
+        </nav>
+    </header>
+
+    `;
   }
 }
 
