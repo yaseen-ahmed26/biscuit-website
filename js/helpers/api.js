@@ -1,31 +1,8 @@
 import { getUserId, getSaveId, saveToLocalStorage } from "./localstorage.js"
 import { changeWindow, showToast } from "./window.js"
 
-const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-const baseURL = isLocal
-    ? "http://127.0.0.1:8000/api"
-    : "https://biscuit-server.onrender.com/api";
-
-console.log(`API base URL is ${baseURL}`)
-
 async function handleResponse(response){
-    let data = {};
-
-    try{
-        data = await response.json();
-    }catch(error){
-        data = {};
-    };
-
-    if(!response.ok){
-        const errorMessage = Array.isArray(data.detail)
-            ? data.detail?.[0]?.msg
-            : data.message || data.detail || "Unknown error";
-        
-        throw new Error(`(${response.status}) ${errorMessage}`);
-    };
-
-    return data
+    return {}
 }
 
 export async function makeHTTPRequest(
@@ -35,102 +12,19 @@ export async function makeHTTPRequest(
     requestURL = ""},
     retry = false
 ){
-    let options = {
-        method: requestType,
-        headers: requestHeaders,
-        body: requestBody,
-        credentials: "include"
-    }
-
-    if(requestType === "GET"){
-        options.body = undefined;
-    }else{
-        if(!requestURL.includes("login")){
-            options.body = JSON.stringify(requestBody)
-        }
-    }
-
-    let response = await fetch(`${baseURL}/${requestURL}`, options)
-
-    if(!response.ok){
-        if(response.status === 401 && !requestURL.includes("login")){
-            if(retry){
-                logOut()
-                console.log("(401) Session expired");
-            }
-
-            const refreshSuccess = await getNewRefresh();
-
-            if(refreshSuccess){
-                return await makeHTTPRequest({
-                    requestType,
-                    requestBody,
-                    requestHeaders,
-                    requestURL
-                }, true);
-            } else {
-                logOut()
-                console.log("(401) Refresh failed");
-            }
-        }
-    };
-
-    return await handleResponse(response);
+    showToast("This legacy website is archived.")
+    throw new Error("Server connection disabled.")
 }
 
 export async function getNewRefresh(){
-    try{
-        const response = await fetch(`${baseURL}/auth/refresh`, {
-            method: "POST",
-            credentials: "include"
-        });
-
-        return response.ok;
-    }catch(error){
-        console.error("Refresh request error: ", error);
-
-        return false;
-    }
+    return false;
 }
 
 export async function getCurrentUser(){
-    try{
-        const response = await fetch(`${baseURL}/users/me`, {
-            method: "GET",
-            credentials: "include"
-        });
-        
-        if(!response.ok){
-            showToast("An error occurred getting saved data");
-            return;
-        }
-
-        const userData = await response.json();
-        const {save, ...user} = userData;
-        
-        saveToLocalStorage("user_data", JSON.stringify(user))
-
-        if(save){
-            saveToLocalStorage("user_save", JSON.stringify(save))
-        }
-
-        changeWindow("account.html")
-    
-    }catch (error){
-        showToast(`${error.message}`);
-    };
+    showToast("Login is disabled.")
 }
 
 export async function logOut(){
-    const response = await fetch(`${baseURL}/auth/logout`, {
-        method: "POST",
-        credentials: "include"
-    });
-
-    if(response.ok){
-        localStorage.clear();
-        changeWindow("index.html")
-
-        showToast("Successfully logged out");
-    }
+    changeWindow("index.html");
+    localStorage.clear();
 }
